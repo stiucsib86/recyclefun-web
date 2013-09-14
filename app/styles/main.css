@@ -24,7 +24,22 @@ body {
 .main-content {
   padding-top: 51px;
 }
+/*
+.articles{
+	color :#000;
+}
+*/
 
+.box{
+	padding: 10px;
+	margin-top: 50px;
+	border-radius: 15px;
+	border-width: 1px;
+	border: 2px dashed #fff;
+	/*color:#c32428;*/
+	background: #c32428;
+	min-height: 300px;
+}
 
 #login {
 	margin: 50px auto;
@@ -70,7 +85,7 @@ form fieldset input[type="submit"] {
 }
 
 form fieldset a {
-	color: #5a5656;
+	color: #fff;
 	font-size: 10px;
 }
 
