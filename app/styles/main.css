@@ -28,6 +28,7 @@ body {
 .articles{
 	color :#000;
 }
+https://kuler.adobe.com/Neenah-Environment-color-theme-1026531/edit/?copy=true&base=2&rule=Custom&selected=4&name=Copy%20of%20Neenah%20Environment&mode=hsv&rgbvalues=0.1803921568627451,0.12941176470588237,0.2980392156862745,0.6352941176470588,0.6941176470588235,0.3607843137254902,0.8352941176470589,0.8705882352941177,0.5215686274509804,0.803921568627451,0.39215686274509803,0.2784313725490196,0.9098039215686274,0.9176470588235294,0.7215686274509804&swatchOrder=0,1,2,3,4
 */
 
 .box{
@@ -35,14 +36,26 @@ body {
 	margin-top: 50px;
 	border-radius: 15px;
 	border-width: 1px;
-	border: 2px dashed #fff;
+	border: 2px dashed #E8EAB8;
+	box-shadow: 0 0 0 4px #2E214C;
+	position: relative;
 	/*color:#c32428;*/
-	background: #c32428;
+	background: #201736;
 	min-height: 300px;
 }
 
+.box h2{
+	color:#D5DE85;
+}
+
+.box p:last-child{
+	position: absolute;
+	bottom: 5px;
+	right:10px;
+}
+
 #login {
-	margin: 50px auto;
+	margin-top: 50px;
 	width: 300px;
 }
 
@@ -54,7 +67,7 @@ body {
 
 
 form fieldset input[type="text"], input[type="password"] {
-	background-color: #e5e5e5;
+	background-color: #E8EAB8;
 	border: none;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -147,7 +160,7 @@ form fieldset a:hover { text-decoration: underline; }
 	width: 230px;
 }
 .register-before {
-	background-color: brown;
+	background-color: #B2573E;
 	border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
 	-webkit-border-radius: 3px 0px 0px 3px;
@@ -160,7 +173,7 @@ form fieldset a:hover { text-decoration: underline; }
 	width: 50px;
 }
 .register {
-	background-color: red;
+	background-color: #CD6447;
 	border: none;
 	border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
