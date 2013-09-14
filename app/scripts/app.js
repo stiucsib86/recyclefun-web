@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('recyclefunWebApp', [])
+angular.module('recyclefunWebApp', ['ngCookies', 'FacebookProvider'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/login', {

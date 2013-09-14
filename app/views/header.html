@@ -19,20 +19,24 @@
         </li>
       </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown" >
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/#/setting">Settings</a></li>
-                <li><a href="/#/profile/view/1">Profile</a></li>
-                <li><a href="/#/badges">Badges</a></li>
-                <!-- <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li> -->
-              </ul>
-            </li>
-          </ul>        
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-hide="auth.user">
+          <a href="#">Login</a>
+        </li>
+        <li ng-hide="auth.user">
+          <a href="#">Register</a>
+        </li>
+        <li ng-show="auth.user" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/#/setting">Settings</a></li>
+            <li><a href="/#/profile/view/1">Profile</a></li>
+            <li><a href="/#/badges">Badges</a></li>
+            <li class="divider"></li>
+            <li><a href="#logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
   </div>
 </header>
