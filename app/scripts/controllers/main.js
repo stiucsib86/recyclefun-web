@@ -2,6 +2,8 @@
 
 angular.module('recyclefunWebApp').controller('MainCtrl', function($http, $scope, $timeout) {
   
+$scope.location = window.location;
+
   // var OneMap;
 
 

@@ -11,11 +11,11 @@
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <li>
-          <a href="/#/getting-started">Home</a>
-        </li>
-        <li class="active">
+        <li class="" ng-class="{ 'active': location.href.indexOf('leaderboard')}">
           <a href="/#/leaderboard">Leaderboard</a>
+        </li>
+        <li class="">
+          <a href="" target="_blank">Blog</a>
         </li>
       </ul>
 
@@ -26,10 +26,6 @@
                 <li><a href="/#/setting">Settings</a></li>
                 <li><a href="/#/profile/view/1">Profile</a></li>
                 <li><a href="/#/badges">Badges</a></li>
-                <!-- <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li> -->
               </ul>
             </li>
           </ul>        
