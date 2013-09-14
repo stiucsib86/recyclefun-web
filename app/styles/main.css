@@ -5,7 +5,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #fafafa;
 
-    background: url(https://dl.dropboxusercontent.com/u/22391606/137914764814208.jpeg) no-repeat center center fixed;   
+    background: url(../images/green.jpeg) no-repeat center center fixed;   
     /*background: url(http://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hamby_Park_lawn.JPG/1280px-Hamby_Park_lawn.JPG) no-repeat center center fixed;   */
   /*-webkit-filter: blur(2px) grayscale (0.5) opacity(0.8);*/
   -webkit-background-size: cover;  
