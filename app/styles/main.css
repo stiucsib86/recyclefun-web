@@ -1,28 +1,31 @@
 @import url(http://weloveiconfonts.com/api/?family=fontawesome);
 
 body {
-    /*background: #fafafa;*/
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #fafafa;
+ padding-top: 50px; 
+}
 
-    background: url(../images/green.jpeg) no-repeat center center fixed;   
-    /*background: url(http://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hamby_Park_lawn.JPG/1280px-Hamby_Park_lawn.JPG) no-repeat center center fixed;   */
-  /*-webkit-filter: blur(2px) grayscale (0.5) opacity(0.8);*/
-  -webkit-background-size: cover;  
-  -moz-background-size: cover;  
-  -o-background-size: cover;  
-  background-size: cover;  
-   /*opacity: 0.6;*/
-  /*-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://media02.hongkiat.com/oversized-background-image-design/bg.jpg', sizingMethod='scale')";  */
-  /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.http://media02.hongkiat.com/oversized-background-image-design/bg.jpg', sizingMethod='scale');  */
+#homepage {
+	/*background: #fafafa;*/
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #fafafa;
+	background: url(../images/green.jpeg) no-repeat center center fixed;
+	/*background: url(http://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hamby_Park_lawn.JPG/1280px-Hamby_Park_lawn.JPG) no-repeat center center fixed;   */
+	/*-webkit-filter: blur(2px) grayscale (0.5) opacity(0.8);*/
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	/*opacity: 0.6;*/
+	/*-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://media02.hongkiat.com/oversized-background-image-design/bg.jpg', sizingMethod='scale')";  */
+	/*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.http://media02.hongkiat.com/oversized-background-image-design/bg.jpg', sizingMethod='scale');  */
 }
 
 .map-container img {
-  max-width: none;
+	max-width: none;
 }
 
 .main-content {
-  padding-top: 51px;
+	padding-top: 51px;
 }
 /*
 .articles{
@@ -62,11 +65,12 @@ https://kuler.adobe.com/Neenah-Environment-color-theme-1026531/edit/?copy=true&b
 /* ---------- FONTAWESOME ---------- */
 
 [class*="fontawesome-"]:before {
-  font-family: 'FontAwesome', sans-serif;
+	font-family: 'FontAwesome', sans-serif;
 }
 
 
-form fieldset input[type="text"], input[type="password"] {
+#login input[type="text"], 
+#login input[type="password"] {
 	background-color: #E8EAB8;
 	border: none;
 	border-radius: 3px;
@@ -79,9 +83,14 @@ form fieldset input[type="text"], input[type="password"] {
 	outline: none;
 	padding: 0px 10px;
 	width: 280px;
-  -webkit-appearance:none;
+	-webkit-appearance:none;
 }
 
+.login-btn {
+  line-height: 38px !important;
+}
+
+form fieldset .login-btn, 
 form fieldset input[type="submit"] {
 	background-color: #008dde;
 	border: none;
@@ -94,7 +103,7 @@ form fieldset input[type="submit"] {
 	height: 50px;
 	text-transform: uppercase;
 	width: 280px;
-  -webkit-appearance:none;
+	-webkit-appearance:none;
 }
 
 form fieldset a {
