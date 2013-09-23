@@ -1,7 +1,9 @@
+/*global Morris:false, alert:false */
+
 'use strict';
 
 angular.module('recyclefunWebApp')
-.controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams, $timeout) {
+.controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams) {
 
   $scope.IsPageOwner = function() {
     if (!$routeParams.userid) {
@@ -17,9 +19,9 @@ angular.module('recyclefunWebApp')
       params: {
         user_id: $routeParams.userid
       }
-    }).success(function(data, status, headers, config) {
+    }).success(function(data) {
       $scope.user = data.data;
-    }).error(function(data, status, headers, config) {
+    }).error(function(data) {
       console.warn(data);
     });
   };
@@ -29,13 +31,13 @@ angular.module('recyclefunWebApp')
   Morris.Donut({
     element: 'donut-example',
     data: [
-      {label: "Paper", value: 6},
-      {label: "Can", value: 3},
-      {label: "Glass", value: 7},
-      {label: "Plastic", value: 4},
-      {label: "Cloth", value: 4},
-      {label: "Garden", value: 2},
-      {label: "misc", value: 1}
+      {label: 'Paper', value: 6},
+      {label: 'Can', value: 3},
+      {label: 'Glass', value: 7},
+      {label: 'Plastic', value: 4},
+      {label: 'Cloth', value: 4},
+      {label: 'Garden', value: 2},
+      {label: 'misc', value: 1}
     ]
   });
 
@@ -54,7 +56,7 @@ angular.module('recyclefunWebApp')
   });
 
 })
-.controller('UserSettingsCtrl', function($http, $scope, $rootScope, $routeParams, $timeout) {
+.controller('UserSettingsCtrl', function($http, $scope, $rootScope) {
 
   $scope.user = {};
   $scope._loading = {
@@ -68,10 +70,10 @@ angular.module('recyclefunWebApp')
       method: 'GET',
       withCredentials: true,
       url: $rootScope._app.url.api + 'user'
-    }).success(function(data, status, headers, config) {
+    }).success(function(data) {
       $scope._loading.GetUserSettings = false;
       $scope.user = data.data;
-    }).error(function(data, status, headers, config) {
+    }).error(function(data) {
       console.warn(data);
     });
   };
@@ -83,10 +85,10 @@ angular.module('recyclefunWebApp')
       withCredentials: true,
       url: $rootScope._app.url.api + 'user',
       data: $scope.user
-    }).success(function(data, status, headers, config) {
+    }).success(function() {
       $scope._loading.SaveUserSettings = false;
       alert('Settings saved.');
-    }).error(function(data, status, headers, config) {
+    }).error(function(data) {
       console.warn(data);
     });
   };
@@ -97,9 +99,9 @@ angular.module('recyclefunWebApp')
 
 
 })
-.controller('UserBadgesCtrl', function($http, $scope, $routeParams, $timeout) {
+.controller('UserBadgesCtrl', function() {
 
 })
-.controller('UserNotificationsCtrl', function($http, $scope, $routeParams, $timeout) {
+.controller('UserNotificationsCtrl', function() {
 
 });

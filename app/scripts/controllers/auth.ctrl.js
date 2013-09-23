@@ -1,10 +1,12 @@
+/*global jQuery:false */
+
 'use strict';
 
 angular.module('recyclefunWebApp')
-.controller('LoginCtrl', function($http, $location, $scope, $rootScope, $routeParams, $timeout) {
+.controller('LoginCtrl', function($rootScope) {
   $rootScope.GetAuth();
 })
-.controller('RegisterCtrl', function($http, $location, $scope, $rootScope, $routeParams, $timeout) {
+.controller('RegisterCtrl', function($http, $rootScope, $scope) {
   $rootScope.GetAuth();
 
   $scope.Register = function() {
@@ -19,9 +21,9 @@ angular.module('recyclefunWebApp')
       withCredentials: true,
       url: $rootScope._app.url.api + 'auth/register',
       data: $scope.regFrm
-    }).success(function(data, status, headers, config) {
+    }).success(function() {
       $rootScope.GetAuth();
-    }).error(function(data, status, headers, config) {
+    }).error(function(data) {
       console.warn(data);
       console.log($this, $this);
       $this.registerForm._errorMessage = data.message;
@@ -40,14 +42,14 @@ angular.module('recyclefunWebApp')
           required: true
         },
         confirmPassword: {
-          equalTo: "[name=password]"
+          equalTo: '[name=password]'
         }
       },
       highlight: function(element) {
-        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+        jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
       },
       success: function(element) {
-        element.html('<i class="icon-ok"></i>').addClass('valid')
+        jQuery(element).html('<i class="icon-ok"></i>').addClass('valid')
         .closest('.form-group').removeClass('has-error').addClass('has-success');
       }
     });
@@ -58,17 +60,17 @@ angular.module('recyclefunWebApp')
   })();
 
 })
-.controller('LogoutCtrl', function($http, $location, $scope, $rootScope, $routeParams, $timeout) {
+.controller('LogoutCtrl', function($http, $location, $scope, $rootScope) {
 
   $scope.Logout = function() {
     $http({
       method: 'GET',
       withCredentials: true,
       url: $rootScope._app.url.api + 'auth/logout'
-    }).success(function(data, status, headers, config) {
+    }).success(function() {
       $rootScope.auth = {};
       $location.path('/');
-    }).error(function(data, status, headers, config) {
+    }).error(function(data) {
       console.warn(data);
     });
   };

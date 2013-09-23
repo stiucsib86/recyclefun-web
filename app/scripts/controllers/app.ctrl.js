@@ -1,3 +1,5 @@
+/*global jQuery:false */
+
 'use strict';
 
 angular.module('recyclefunWebApp')
@@ -45,7 +47,7 @@ angular.module('recyclefunWebApp')
     }
   }
 
-  $scope.fb_login = function() {
+  $scope.FBLogin = function() {
     Facebook.login();
   };
 
@@ -57,16 +59,16 @@ angular.module('recyclefunWebApp')
       url: $rootScope._app.url.api + 'auth/',
       params: {
         //callback: 'JSON_CALLBACK',
-        accessToken: authResponse.accessToken,
-        type: 'Facebook',
-        fb_userID: authResponse.userID
+        'accessToken': authResponse.accessToken,
+        'type': 'Facebook',
+        'fb_userID': authResponse.userID
       }
-    }).success(function(data, status, headers, config) {
+    }).success(function(data) {
       // this callback will be called asynchronously
       // when the response is available
       $rootScope.auth = data;
       console.log('$rootScope.auth', $rootScope.auth);
-    }).error(function(data, status, headers, config) {
+    }).error(function() {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
     });
@@ -82,16 +84,16 @@ angular.module('recyclefunWebApp')
       params: {
         //callback: 'JSON_CALLBACK'
       }
-    }).success(function(data, status, headers, config) {
+    }).success(function(data) {
       $rootScope.auth = data;
-    }).error(function(data, status, headers, config) {
+    }).error(function(data) {
       console.warn(data);
     });
   };
   
   $scope.$watch('auth', function() {
     if ($rootScope.auth && $rootScope.auth.user) {
-      console.log("Welcome " + $rootScope.auth.user.name.display_name);
+      console.log('Welcome ' + $rootScope.auth.user.name.display_name);
       var notAllowedURL = ['/login', '/register'];
       console.log(notAllowedURL);
       if (notAllowedURL.indexOf($location.path()) > -1) {
@@ -112,9 +114,9 @@ angular.module('recyclefunWebApp')
           password: $this.loginForm.inputPassword.$modelValue,
           remember: $this.loginForm.inputRemember.$modelValue
         }
-      }).success(function(data, status, headers, config) {
+      }).success(function() {
         $rootScope.GetAuth();
-      }).error(function(data, status, headers, config) {
+      }).error(function(data) {
         $this.loginForm._errorMessage = (data.message);
       });
     }
@@ -127,6 +129,6 @@ angular.module('recyclefunWebApp')
   })();
 
 })
-.controller('FacebookCtrl', function($http, $scope, $rootScope, $timeout, Facebook) {
+.controller('FacebookCtrl', function() {
 
 });
