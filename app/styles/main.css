@@ -86,8 +86,11 @@ https://kuler.adobe.com/Neenah-Environment-color-theme-1026531/edit/?copy=true&b
 	-webkit-appearance:none;
 }
 
-.login-btn {
+.mainpage-btn {
   line-height: 38px !important;
+}
+.mainpage-btn:hover {
+  color: #F8F8F8;
 }
 
 form fieldset .login-btn, 
