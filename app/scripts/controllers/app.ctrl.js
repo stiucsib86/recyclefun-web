@@ -29,7 +29,7 @@ angular.module('recyclefunWebApp')
     // Production Environment
     $rootScope._app = {
       url: {
-        api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api-php.azurewebsites.net/'
+        api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api-php.azurewebsites.net/index.php/'
       }
     };
     /*
