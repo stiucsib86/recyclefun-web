@@ -9,6 +9,8 @@
     "bootstrap": "~3.0",
     "es5-shim": "~2.1.0",
     "font-awesome": "~3.2.1",
+    "jquery": "~2.0.3",
+    "jquery-backstretch": "~2.0.4",
     "jquery-validation": "~1.11.2",
     "json3": "~3.2.4",
     "morris.js": "~0.4.3",

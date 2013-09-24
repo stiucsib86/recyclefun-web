@@ -92,7 +92,7 @@ angular.module('recyclefunWebApp')
       console.warn(data);
     });
   };
-  
+
   $scope.$watch('auth', function() {
     if ($rootScope.auth && $rootScope.auth.user) {
       console.log('Welcome ' + $rootScope.auth.user.name.display_name);
@@ -128,6 +128,17 @@ angular.module('recyclefunWebApp')
   /* Initialize */
   (function() {
     $rootScope.GetAuth();
+
+    jQuery.backstretch([
+      'images/bg/1.jpg',
+      'images/bg/2.jpg',
+      'images/bg/3.jpg',
+      'images/bg/4.jpg',
+      'images/bg/5.jpg'
+    ], {
+      fade: 1000,
+      duration: 8000
+    });
   })();
 
 })

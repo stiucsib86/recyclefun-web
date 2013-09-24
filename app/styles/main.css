@@ -1,89 +1,76 @@
 @import url(http://weloveiconfonts.com/api/?family=fontawesome);
 
 body {
- padding-top: 50px; 
+  padding-top: 50px; 
 }
 
 #homepage {
-	/*background: #fafafa;*/
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #fafafa;
-	background: url(../images/green.jpeg) no-repeat center center fixed;
-	/*background: url(http://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hamby_Park_lawn.JPG/1280px-Hamby_Park_lawn.JPG) no-repeat center center fixed;   */
-	/*-webkit-filter: blur(2px) grayscale (0.5) opacity(0.8);*/
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	/*opacity: 0.6;*/
-	/*-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://media02.hongkiat.com/oversized-background-image-design/bg.jpg', sizingMethod='scale')";  */
-	/*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.http://media02.hongkiat.com/oversized-background-image-design/bg.jpg', sizingMethod='scale');  */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fafafa;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .map-container img {
-	max-width: none;
+  max-width: none;
 }
 
 .main-content {
-	padding-top: 51px;
+  padding-top: 51px;
 }
-/*
-.articles{
-	color :#000;
-}
-https://kuler.adobe.com/Neenah-Environment-color-theme-1026531/edit/?copy=true&base=2&rule=Custom&selected=4&name=Copy%20of%20Neenah%20Environment&mode=hsv&rgbvalues=0.1803921568627451,0.12941176470588237,0.2980392156862745,0.6352941176470588,0.6941176470588235,0.3607843137254902,0.8352941176470589,0.8705882352941177,0.5215686274509804,0.803921568627451,0.39215686274509803,0.2784313725490196,0.9098039215686274,0.9176470588235294,0.7215686274509804&swatchOrder=0,1,2,3,4
-*/
 
 .box{
-	padding: 10px;
-	margin-top: 50px;
-	border-radius: 15px;
-	border-width: 1px;
-	border: 2px dashed #E8EAB8;
-	box-shadow: 0 0 0 4px #2E214C;
-	position: relative;
-	/*color:#c32428;*/
-	background: #201736;
-	min-height: 300px;
+  padding: 10px;
+  margin-top: 50px;
+  border-radius: 15px;
+  border-width: 1px;
+  border: 2px dashed #E8EAB8;
+  box-shadow: 0 0 0 4px #2E214C;
+  position: relative;
+  /*color:#c32428;*/
+  background: #201736;
+  min-height: 300px;
 }
 
 .box h2{
-	color:#D5DE85;
+  color:#D5DE85;
 }
 
 .box p:last-child{
-	position: absolute;
-	bottom: 5px;
-	right:10px;
+  position: absolute;
+  bottom: 5px;
+  right:10px;
 }
 
 #login {
-	margin-top: 50px;
-	width: 300px;
+  margin-top: 50px;
+  width: 300px;
 }
 
 /* ---------- FONTAWESOME ---------- */
 
 [class*="fontawesome-"]:before {
-	font-family: 'FontAwesome', sans-serif;
+  font-family: 'FontAwesome', sans-serif;
 }
 
 
 #login input[type="text"], 
 #login input[type="password"] {
-	background-color: #E8EAB8;
-	border: none;
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	color: #5a5656;
-	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	height: 50px;
-	outline: none;
-	padding: 0px 10px;
-	width: 280px;
-	-webkit-appearance:none;
+  background-color: #E8EAB8;
+  border: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  color: #5a5656;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  height: 50px;
+  outline: none;
+  padding: 0px 10px;
+  width: 280px;
+  -webkit-appearance:none;
 }
 
 .mainpage-btn {
@@ -95,104 +82,104 @@ https://kuler.adobe.com/Neenah-Environment-color-theme-1026531/edit/?copy=true&b
 
 form fieldset .login-btn, 
 form fieldset input[type="submit"] {
-	background-color: #008dde;
-	border: none;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	color: #f4f4f4;
-	cursor: pointer;
-	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-	height: 50px;
-	text-transform: uppercase;
-	width: 280px;
-	-webkit-appearance:none;
+  background-color: #008dde;
+  border: none;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  color: #f4f4f4;
+  cursor: pointer;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  height: 50px;
+  text-transform: uppercase;
+  width: 280px;
+  -webkit-appearance:none;
 }
 
 form fieldset a {
-	color: #fff;
-	font-size: 10px;
+  color: #fff;
+  font-size: 10px;
 }
 
 form fieldset a:hover { text-decoration: underline; }
 
 
 .facebook-before {
-	background-color: #0064ab;
-	border-radius: 3px 0px 0px 3px;
-	-moz-border-radius: 3px 0px 0px 3px;
-	-webkit-border-radius: 3px 0px 0px 3px;
-	color: #f4f4f4;
-	display: block;
-	float: left;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	width: 50px;
+  background-color: #0064ab;
+  border-radius: 3px 0px 0px 3px;
+  -moz-border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 3px 0px 0px 3px;
+  color: #f4f4f4;
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
 }
 
 .facebook {
-	background-color: #0079ce;
-	border: none;
-	border-radius: 0px 3px 3px 0px;
-	-moz-border-radius: 0px 3px 3px 0px;
-	-webkit-border-radius: 0px 3px 3px 0px;
-	color: #f4f4f4;
-	cursor: pointer;
-	height: 50px;
-	text-transform: uppercase;
-	width: 230px;
+  background-color: #0079ce;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0px 3px 3px 0px;
+  color: #f4f4f4;
+  cursor: pointer;
+  height: 50px;
+  text-transform: uppercase;
+  width: 230px;
 }
 
 .twitter-before {
-	background-color: #189bcb;
-	border-radius: 3px 0px 0px 3px;
-	-moz-border-radius: 3px 0px 0px 3px;
-	-webkit-border-radius: 3px 0px 0px 3px;
-	color: #f4f4f4;
-	display: block;
-	float: left;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	width: 50px;
+  background-color: #189bcb;
+  border-radius: 3px 0px 0px 3px;
+  -moz-border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 3px 0px 0px 3px;
+  color: #f4f4f4;
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
 }
 
 
 .twitter {
-	background-color: #1bb2e9;
-	border: none;
-	border-radius: 0px 3px 3px 0px;
-	-moz-border-radius: 0px 3px 3px 0px;
-	-webkit-border-radius: 0px 3px 3px 0px;
-	color: #f4f4f4;
-	cursor: pointer;
-	height: 50px;
-	text-transform: uppercase;
-	width: 230px;
+  background-color: #1bb2e9;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0px 3px 3px 0px;
+  color: #f4f4f4;
+  cursor: pointer;
+  height: 50px;
+  text-transform: uppercase;
+  width: 230px;
 }
 .register-before {
-	background-color: #B2573E;
-	border-radius: 3px 0px 0px 3px;
-	-moz-border-radius: 3px 0px 0px 3px;
-	-webkit-border-radius: 3px 0px 0px 3px;
-	color: #f4f4f4;
-	display: block;
-	float: left;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	width: 50px;
+  background-color: #B2573E;
+  border-radius: 3px 0px 0px 3px;
+  -moz-border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 3px 0px 0px 3px;
+  color: #f4f4f4;
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
 }
 .register {
-	background-color: #CD6447;
-	border: none;
-	border-radius: 0px 3px 3px 0px;
-	-moz-border-radius: 0px 3px 3px 0px;
-	-webkit-border-radius: 0px 3px 3px 0px;
-	color: #f4f4f4;
-	cursor: pointer;
-	height: 50px;
-	text-transform: uppercase;
-	width: 230px;
+  background-color: #CD6447;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0px 3px 3px 0px;
+  color: #f4f4f4;
+  cursor: pointer;
+  height: 50px;
+  text-transform: uppercase;
+  width: 230px;
 }
