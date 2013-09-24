@@ -10,6 +10,7 @@ angular.module('recyclefunWebApp')
     $rootScope._app = {
       url: {
         api: jQuery.url().attr('protocol') + '://' + 'api.recyclefun.localhost/'
+        //api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api.ap01.aws.af.cm/'
       }
     };
     /*
@@ -29,7 +30,8 @@ angular.module('recyclefunWebApp')
     // Production Environment
     $rootScope._app = {
       url: {
-        api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api-php.azurewebsites.net/index.php/'
+        //api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api-php.azurewebsites.net/index.php/'
+        api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api.ap01.aws.af.cm/'
       }
     };
     /*
