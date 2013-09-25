@@ -9,8 +9,8 @@ angular.module('recyclefunWebApp')
     // Localhost Environment
     $rootScope._app = {
       url: {
-        api: jQuery.url().attr('protocol') + '://' + 'api.recyclefun.localhost/'
-        //api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api.ap01.aws.af.cm/'
+        //api: jQuery.url().attr('protocol') + '://' + 'api.recyclefun.localhost/'
+        api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api.ap01.aws.af.cm/'
       }
     };
     /*
@@ -89,7 +89,7 @@ angular.module('recyclefunWebApp')
     }).success(function(data) {
       $rootScope.auth = data;
     }).error(function(data) {
-      console.warn(data);
+      console.warn(data.message);
     });
   };
 

@@ -23,12 +23,16 @@ angular.module('recyclefunWebApp', ['ngCookies', 'FacebookProvider'])
         controller: 'RegisterCtrl'
       })
       .when('/forget-password', {
-        templateUrl: 'views/auth/forget-password.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/auth/password-forget.html',
+        controller: 'PasswordForgetCtrl'
       })
-      .when('/reset-password', {
-        templateUrl: 'views/auth/reset-password.html',
-        controller: 'MainCtrl'
+      .when('/reset-password/:code', {
+        templateUrl: 'views/auth/password-reset.html',
+        controller: 'PasswordResetCtrl'
+      })
+      .when('/auth/reset-password/:code', {
+        templateUrl: 'views/auth/password-reset.html',
+        controller: 'PasswordResetCtrl'
       })
       // -----------------------------------------------------------------------
       //                    User

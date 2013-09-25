@@ -77,4 +77,63 @@ angular.module('recyclefunWebApp')
 
   $scope.Logout();
 
+})
+.controller('PasswordForgetCtrl', function($http, $rootScope, $scope) {
+
+  $scope.PasswordForget = function() {
+    $http({
+      method: 'POST',
+      withCredentials: true,
+      url: $rootScope._app.url.api + 'auth/password_forget',
+      data: {
+        email: $scope.inputEmail
+      }
+    }).success(function(data) {
+      $scope.passwordForgetForm._completed = true;
+      $scope.passwordForgetForm._successMessage = data.message;
+    }).error(function(data) {
+      $scope.passwordForgetForm._errorMessage = data.message;
+    });
+  };
+})
+.controller('PasswordResetCtrl', function($http, $scope, $routeParams) {
+
+  $scope.PasswordResetCodeCheck = function() {
+    $http({
+      method: 'POST',
+      withCredentials: true,
+      url: $rootScope._app.url.api + 'auth/password_check',
+      data: {
+        code: $scope.code
+      }
+    }).success(function(data) {
+      $scope.passwordResetCodeForm._completed = true;
+      $scope.passwordResetCodeForm._successMessage = data.message;
+    }).error(function(data) {
+      $scope.passwordResetCodeForm._errorMessage = data.message;
+    });
+  };
+  
+  $scope.PasswordReset = function() {
+    $http({
+      method: 'POST',
+      withCredentials: true,
+      url: $rootScope._app.url.api + 'auth/password_reset',
+      data: {
+        newPassword: $scope.newPassword
+      }
+    }).success(function(data) {
+      $scope.passwordResetForm._completed = true;
+      $scope.passwordResetForm._successMessage = data.message;
+    }).error(function(data) {
+      $scope.passwordResetForm._errorMessage = data.message;
+    });
+  };
+  
+  (function() {
+    if ($routeParams.code) {
+      //$scope.CheckPasswordResetCode();
+    }
+  })();
+
 });
