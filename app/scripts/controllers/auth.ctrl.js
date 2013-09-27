@@ -78,7 +78,7 @@ angular.module('recyclefunWebApp')
   $scope.Logout();
 
 })
-.controller('PasswordForgetCtrl', function($http, $rootScope, $scope) {
+.controller('PasswordForgetCtrl', function($http, $location, $rootScope, $scope) {
 
   $scope.PasswordForget = function() {
     $http({
@@ -95,16 +95,24 @@ angular.module('recyclefunWebApp')
       $scope.passwordForgetForm._errorMessage = data.message;
     });
   };
+
 })
-.controller('PasswordResetCtrl', function($http, $scope, $routeParams) {
+.controller('PasswordResetCtrl', function($http, $scope, $rootScope, $routeParams) {
+
+  $scope.frmInput = {};
+  $scope.passwordResetForm = {};
+
+  if ($routeParams.passcode) {
+    $scope.frmInput.passcode = $routeParams.passcode;
+  }
 
   $scope.PasswordResetCodeCheck = function() {
     $http({
       method: 'POST',
       withCredentials: true,
-      url: $rootScope._app.url.api + 'auth/password_check',
+      url: $rootScope._app.url.api + 'auth/passcode_check',
       data: {
-        code: $scope.code
+        passcode: $scope.frmInput.passcode
       }
     }).success(function(data) {
       $scope.passwordResetCodeForm._completed = true;
@@ -113,25 +121,23 @@ angular.module('recyclefunWebApp')
       $scope.passwordResetCodeForm._errorMessage = data.message;
     });
   };
-  
-  $scope.PasswordReset = function() {
-    $http({
-      method: 'POST',
-      withCredentials: true,
-      url: $rootScope._app.url.api + 'auth/password_reset',
-      data: {
-        newPassword: $scope.newPassword
-      }
-    }).success(function(data) {
-      $scope.passwordResetForm._completed = true;
-      $scope.passwordResetForm._successMessage = data.message;
-    }).error(function(data) {
-      $scope.passwordResetForm._errorMessage = data.message;
-    });
-  };
-  
+
+//  $scope.PasswordReset = function() {
+//    $http({
+//      method: 'POST',
+//      withCredentials: true,
+//      url: $rootScope._app.url.api + 'auth/password_reset',
+//      data: frmInput
+//    }).success(function(data) {
+//      $scope.passwordResetForm._completed = true;
+//      $scope.passwordResetForm._successMessage = data.message;
+//    }).error(function(data) {
+//      $scope.passwordResetForm._errorMessage = data.message;
+//    });
+//  };
+
   (function() {
-    if ($routeParams.code) {
+    if ($routeParams.passcode) {
       //$scope.CheckPasswordResetCode();
     }
   })();

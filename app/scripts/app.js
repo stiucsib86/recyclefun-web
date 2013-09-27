@@ -30,7 +30,7 @@ angular.module('recyclefunWebApp', ['ngCookies', 'FacebookProvider'])
         templateUrl: 'views/auth/password-reset.html',
         controller: 'PasswordResetCtrl'
       })
-      .when('/auth/reset-password/:code', {
+      .when('/auth/reset-password/:passcode', {
         templateUrl: 'views/auth/password-reset.html',
         controller: 'PasswordResetCtrl'
       })
