@@ -27,162 +27,174 @@
           </li>
         </ul>
 
-        <div>
-          <div class="row">
-            <div class="col-xs-12 col-md-3">
-              <img ng-src="{{user.profile_image.gravatar}}" class="img-thumbnail">
-            </div>
-            <div class="col-xs-12 col-md-9">
-              <h1>{{user.name.display_name || '(no name)'}}</h1>
-              <div>
-                <p ng-bind-html-unsafe="user.bio"></p>
-              </div>
-              <div ng-show="user.website">
-                <p>
-                  <span><i class="icon-globe"></i>&nbsp;</span>
-                  <a href="{{user.website}}" target="_blank">
-                    {{user.website}} <i class="icon-external-link"></i>
-                  </a>
-                </p>
-              </div>
-              <div ng-show="user.interest">
-                <span><i class="icon-heart"></i></span>
-                <ul class="list-unstyled list-inline" style="display: inline-block">
-                  <li ng-repeat="i in user.interest">
-                    <span class="label label-info">{{i}}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div ng-show="_loading.GetUser">
+          <h3>Loading...</h3>
+          <div>&nbsp;</div>
+        </div>
+
+        <div ng-hide="_loading.GetUser">
+
+          <div ng-show="_error.message">
+            <div class="alert alert-danger">{{_error.message}}</div>
           </div>
 
-          <div class="clearfix">&nbsp;</div>
-
-          <div class="row">
-            <div class="col-xs-12 col-md-12">
-
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4>All-time Contribution</h4>
+          <div ng-hide="_error.message">
+            <div class="row">
+              <div class="col-xs-12 col-md-3">
+                <img ng-src="{{user.profile_image.gravatar}}" class="img-thumbnail">
+              </div>
+              <div class="col-xs-12 col-md-9">
+                <h1>{{user.name.display_name || '(no name)'}}</h1>
+                <div>
+                  <p ng-bind-html-unsafe="user.bio"></p>
                 </div>
-                <div class="panel-body">
-
-                  <div class="row">
-                    <div class="col-xs-12 col-md-4 responsive" data-tablet="span6" data-desktop="col-xs-12 col-md-3">
-                      <div class="dashboard-stat blue">
-                        <div class="visual">
-                          <i class="icon-leaf"></i>
-                        </div>
-                        <div class="details">
-                          <div class="number">
-                            15 Kg
-                          </div>
-                          <div class="desc">                           
-                            Total Amount Recycled
-                          </div>
-                        </div>
-                        <a class="more" href="#">
-                          View more <i class="m-icon-swapright m-icon-white"></i>
-                        </a>                 
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-md-4 responsive" data-tablet="span6" data-desktop="col-xs-12 col-md-3">
-                      <div class="dashboard-stat green">
-                        <div class="visual">
-                          <i class="icon-star"></i>
-                        </div>
-                        <div class="details">
-                          <div class="number">
-                            1024
-                          </div>
-                          <div class="desc">
-                            Points collected
-                          </div>
-                        </div>
-                        <a class="more" href="#">
-                          View more <i class="m-icon-swapright m-icon-white"></i>
-                        </a>                 
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-md-4 responsive" data-tablet="span6" data-desktop="col-xs-12 col-md-3">
-                      <div class="dashboard-stat yellow">
-                        <div class="visual">
-                          <i class="icon-dollar"></i>
-                        </div>
-                        <div class="details">
-                          <div class="number">S$28</div>
-                          <div class="desc">Earned</div>
-                        </div>
-                        <a class="more" href="">
-                          View more <i class="m-icon-swapright m-icon-white"></i>
-                        </a>                 
-                      </div>
-                    </div>
-                  </div>
-
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <td></td>
-                        <td>Paper</td>
-                        <td>Can</td>
-                        <td>Glass</td>
-                        <td>Plastic</td>
-                        <td>Cloth</td>
-                        <td>Garden</td>
-                        <td>misc</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="text-center">
-                        <td>Current week (kg)</td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>7</td>
-                        <td style="color: red; font-weight: bold; background: #EFEFEF">4</td>
-                        <td>6</td>
-                        <td style="color: red; font-weight: bold; background: #EFEFEF">1</td>
-                        <td style="color: red; font-weight: bold; background: #EFEFEF">1</td>
-                      </tr>
-                      <tr style="text-align: center">
-                        <td>Last Week (kg)</td>
-                        <td>40</td>
-                        <td>14</td>
-                        <td>6</td>
-                        <td>9</td>
-                        <td style="color: red; font-weight: bold; background: #EFEFEF">4</td>
-                        <td style="color: red; font-weight: bold; background: #EFEFEF">3</td>
-                        <td style="color: red; font-weight: bold; background: #EFEFEF">2</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
+                <div ng-show="user.website">
+                  <p>
+                    <span><i class="icon-globe"></i>&nbsp;</span>
+                    <a href="{{user.website}}" target="_blank">
+                      {{user.website}} <i class="icon-external-link"></i>
+                    </a>
+                  </p>
+                </div>
+                <div ng-show="user.interest">
+                  <span><i class="icon-heart"></i></span>
+                  <ul class="list-unstyled list-inline" style="display: inline-block">
+                    <li ng-repeat="i in user.interest">
+                      <span class="label label-info">{{i}}</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
+            </div>
 
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4>Monthly Contribution</h4>
-                </div>
-                <div class="panel-body">
+            <div class="clearfix">&nbsp;</div>
 
-                  <div class="row">
-                    <div class="col-xs-12 col-md-6">
-                      <div id="donut-example"></div>
-                    </div>
-                    <div class="col-xs-12 col-md-6">
-                      <div id="bar-example"></div>
-                    </div>
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4>All-time Contribution</h4>
                   </div>
+                  <div class="panel-body">
 
+                    <div class="row">
+                      <div class="col-xs-12 col-md-4 responsive" data-tablet="span6" data-desktop="col-xs-12 col-md-3">
+                        <div class="dashboard-stat blue">
+                          <div class="visual">
+                            <i class="icon-leaf"></i>
+                          </div>
+                          <div class="details">
+                            <div class="number">
+                              15 Kg
+                            </div>
+                            <div class="desc">                           
+                              Total Amount Recycled
+                            </div>
+                          </div>
+                          <a class="more" href="#">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                          </a>                 
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-md-4 responsive" data-tablet="span6" data-desktop="col-xs-12 col-md-3">
+                        <div class="dashboard-stat green">
+                          <div class="visual">
+                            <i class="icon-star"></i>
+                          </div>
+                          <div class="details">
+                            <div class="number">
+                              1024
+                            </div>
+                            <div class="desc">
+                              Points collected
+                            </div>
+                          </div>
+                          <a class="more" href="#">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                          </a>                 
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-md-4 responsive" data-tablet="span6" data-desktop="col-xs-12 col-md-3">
+                        <div class="dashboard-stat yellow">
+                          <div class="visual">
+                            <i class="icon-dollar"></i>
+                          </div>
+                          <div class="details">
+                            <div class="number">S$28</div>
+                            <div class="desc">Earned</div>
+                          </div>
+                          <a class="more" href="">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                          </a>                 
+                        </div>
+                      </div>
+                    </div>
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <td></td>
+                          <td>Paper</td>
+                          <td>Can</td>
+                          <td>Glass</td>
+                          <td>Plastic</td>
+                          <td>Cloth</td>
+                          <td>Garden</td>
+                          <td>misc</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="text-center">
+                          <td>Current week (kg)</td>
+                          <td>10</td>
+                          <td>5</td>
+                          <td>7</td>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF">4</td>
+                          <td>6</td>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF">1</td>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF">1</td>
+                        </tr>
+                        <tr style="text-align: center">
+                          <td>Last Week (kg)</td>
+                          <td>40</td>
+                          <td>14</td>
+                          <td>6</td>
+                          <td>9</td>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF">4</td>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF">3</td>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF">2</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
                 </div>
-              </div>
 
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4>Monthly Contribution</h4>
+                  </div>
+                  <div class="panel-body">
+
+                    <div class="row">
+                      <div class="col-xs-12 col-md-6">
+                        <div id="donut-example"></div>
+                      </div>
+                      <div class="col-xs-12 col-md-6">
+                        <div id="bar-example"></div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
-
+      
     </div>
   </div>
 </div>
