@@ -23,7 +23,7 @@
                   <th>Contribution per person</th>
                   <th>Recycling rate (%)</th>
                   <th>Waste Total (kg)</th>
-                  <th>Difference to previous month (kg)</th>
+                  <th title="Difference to previous month (kg)">Difference</th>
                   <th>Badges</th>
                 </tr>
               </thead>
@@ -66,9 +66,12 @@
                     {{stat.difference}}
                   </td>
                   <td>
-                    <i class="icon-star" ng-show="stat.badge1"></i>
+                    <img src="images/badge1.png" ng-show="stat.badge1" title="Cultivation badge" width=60>
+                    <img src="images/badge2.png" ng-show="stat.badge2" title="Involvement badge" width=60>
+                    <img src="images/badge3.png" ng-show="stat.badge3" title="Excellent badge" width=60>
+                    <!-- <i class="icon-star" ng-show="stat.badge1"></i>
                     <i class="icon-search" ng-show="stat.badge2"></i>
-                    <i class="icon-plus" ng-show="stat.badge3"></i>
+                    <i class="icon-plus" ng-show="stat.badge3"></i> -->
                   </td>
                 </tr>
               </tbody>
