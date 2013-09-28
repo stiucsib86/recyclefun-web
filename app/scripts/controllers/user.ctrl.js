@@ -5,13 +5,17 @@
 angular.module('recyclefunWebApp')
 .controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams) {
 
+  $scope._loading = {};
+  $scope._error = {};
+
   $scope.IsPageOwner = function() {
-    if (!$routeParams.userid) {
+    if ($rootScope.auth && !$routeParams.userid) {
       return true;
     }
   };
 
   $scope.GetUser = function() {
+    $scope._loading.GetUser = true;
     $http({
       method: 'GET',
       withCredentials: true,
@@ -20,9 +24,13 @@ angular.module('recyclefunWebApp')
         user_id: $routeParams.userid
       }
     }).success(function(data) {
+      $scope._loading.GetUser = false;
+      $scope._error.message = false;
       $scope.user = data.data;
     }).error(function(data) {
-      console.warn(data);
+      $scope._loading.GetUser = false;
+      $scope._error.message = data.error;
+      console.warn(data.error);
     });
   };
 
