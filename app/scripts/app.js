@@ -69,8 +69,12 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
       //                    Misc
       // -----------------------------------------------------------------------
       .when('/leaderboard', {
-        templateUrl: 'views/leaderboard.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/home/leaderboard.html',
+        controller: 'LeaderboardCtrl'
+      })
+      .when('/bins-search', {
+        templateUrl: 'views/home/bins-search.html',
+        controller: 'BinsSearchCtrl'
       })
       .otherwise({
         redirectTo: '/'

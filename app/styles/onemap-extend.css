@@ -1,0 +1,22 @@
+.infowindow .window .top .right .user {
+  background: #FFF;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 0px !important;
+}
+.infowindow .window .top .right .user .titlebar {
+  padding: 5px 10px;
+  vertical-align: middle;
+  background: #EFEFEF;
+}
+.infowindow .window .top .right .user .border {
+  margin-top: 0px !important;
+}
+.infowindow .window .top .right .user .content {
+  margin: 10px !important;
+  padding: 0px !important;
+}
+.infowindow .window .top .right .user .content > div {
+  margin: auto !important;
+}
