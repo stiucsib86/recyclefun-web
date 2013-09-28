@@ -8,6 +8,8 @@ angular.module('recyclefunWebApp')
   $scope._loading = {};
   $scope._error = {};
 
+  $scope.userid = $routeParams.userid;
+
   $scope.IsPageOwner = function() {
     if ($rootScope.auth && !$routeParams.userid) {
       return true;
@@ -36,32 +38,34 @@ angular.module('recyclefunWebApp')
 
   $scope.GetUser();
 
-  Morris.Donut({
-    element: 'donut-example',
-    data: [
-      {label: 'Paper', value: 6},
-      {label: 'Can', value: 3},
-      {label: 'Glass', value: 7},
-      {label: 'Plastic', value: 4},
-      {label: 'Cloth', value: 4},
-      {label: 'Garden', value: 2},
-      {label: 'misc', value: 1}
-    ]
-  });
+  if (jQuery('#donut-example')) {
+    Morris.Donut({
+      element: 'donut-example',
+      data: [
+        {label: 'Paper', value: 6},
+        {label: 'Can', value: 3},
+        {label: 'Glass', value: 7},
+        {label: 'Plastic', value: 4},
+        {label: 'Cloth', value: 4},
+        {label: 'Garden', value: 2},
+        {label: 'misc', value: 1}
+      ]
+    });
 
-  Morris.Bar({
-    element: 'bar-example',
-    data: [
-      {y: 'April', a: 5, b: 40},
-      {y: 'May', a: 4, b: 65},
-      {y: 'Jun', a: 6, b: 40},
-      {y: 'July', a: 7, b: 65},
-      {y: 'Aug', a: 9, b: 90}
-    ],
-    xkey: 'y',
-    ykeys: ['a'],
-    labels: ['Series A']
-  });
+    Morris.Bar({
+      element: 'bar-example',
+      data: [
+        {y: 'April', a: 5, b: 40},
+        {y: 'May', a: 4, b: 65},
+        {y: 'Jun', a: 6, b: 40},
+        {y: 'July', a: 7, b: 65},
+        {y: 'Aug', a: 9, b: 90}
+      ],
+      xkey: 'y',
+      ykeys: ['a'],
+      labels: ['Series A']
+    });
+  }
 
 })
 .controller('UserSettingsCtrl', function($http, $scope, $rootScope) {
