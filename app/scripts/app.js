@@ -57,8 +57,8 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         templateUrl: 'views/user/settings.html',
         controller: 'UserSettingsCtrl'
       })
-      .when('/user/detailed-trasactions', {
-        templateUrl: 'views/user/view.html',
+      .when('/user/detailed-transactions', {
+        templateUrl: 'views/user/detailed-transactions.html',
         controller: 'UserProfileCtrl'
       })
       .when('/user/badges', {
