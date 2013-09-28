@@ -1,4 +1,4 @@
-/*global Morris:false, alert:false */
+/*global Morris:false */
 
 'use strict';
 
