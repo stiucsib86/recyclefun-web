@@ -77,6 +77,17 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         controller: 'UserProfileCtrl'
       })
       // -----------------------------------------------------------------------
+      //                    PWC Dashboard
+      // -----------------------------------------------------------------------
+      .when('/manage/pwc', {
+        templateUrl: 'views/user/view.html',
+        controller: 'UserProfileCtrl'
+      })
+      .when('/manage/pwc/bin/:binId', {
+        templateUrl: 'views/user/badges.html',
+        controller: 'UserProfileCtrl'
+      })
+      // -----------------------------------------------------------------------
       //                    Misc
       // -----------------------------------------------------------------------
       .when('/leaderboard', {
