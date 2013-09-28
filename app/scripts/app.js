@@ -45,6 +45,10 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         templateUrl: 'views/user/view.html',
         controller: 'UserProfileCtrl'
       })
+      .when('/user/notifications', {
+        templateUrl: 'views/user/notifications.html',
+        controller: 'UserNotificationsCtrl'
+      })
       .when('/user/edit', {
         templateUrl: 'views/user/edit.html',
         controller: 'UserEditCtrl'
@@ -53,16 +57,23 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         templateUrl: 'views/user/settings.html',
         controller: 'UserSettingsCtrl'
       })
+      .when('/user/detailed-trasactions', {
+        templateUrl: 'views/user/view.html',
+        controller: 'UserProfileCtrl'
+      })
       .when('/user/badges', {
         templateUrl: 'views/user/badges.html',
         controller: 'UserBadgesCtrl'
       })
-      .when('/user/notifications', {
-        templateUrl: 'views/user/notifications.html',
-        controller: 'UserNotificationsCtrl'
-      })
+      // -----------------------------------------------------------------------
+      //                    User Public Profile
+      // -----------------------------------------------------------------------
       .when('/user/:userid', {
         templateUrl: 'views/user/view.html',
+        controller: 'UserProfileCtrl'
+      })
+      .when('/user/:userid/badges', {
+        templateUrl: 'views/user/badges.html',
         controller: 'UserProfileCtrl'
       })
       // -----------------------------------------------------------------------
