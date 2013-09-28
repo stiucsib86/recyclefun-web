@@ -79,13 +79,17 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
       // -----------------------------------------------------------------------
       //                    PWC Dashboard
       // -----------------------------------------------------------------------
+      .when('/manage', {
+        templateUrl: 'views/pwc-manage/overview.html',
+        controller: 'PwcOverviewCtrl'
+      })
       .when('/manage/pwc', {
-        templateUrl: 'views/user/view.html',
-        controller: 'UserProfileCtrl'
+        templateUrl: 'views/pwc-manage/overview.html',
+        controller: 'PwcOverviewCtrl'
       })
       .when('/manage/pwc/bin/:binId', {
-        templateUrl: 'views/user/badges.html',
-        controller: 'UserProfileCtrl'
+        templateUrl: 'views/pwc-manage/bin.html',
+        controller: 'PwcBinCtrl'
       })
       // -----------------------------------------------------------------------
       //                    Misc

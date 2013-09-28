@@ -1,0 +1,94 @@
+<div class="page-container">
+  <div class="container container-bg-white">
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+
+        <h3 class="page-title">
+          Bin Dashboard <small></small>
+        </h3>
+
+        <!-- BREADCRUMB -->
+        <ul class="breadcrumb">
+          <li>
+            <i class="icon-home"></i>
+            <a href="/#/">Home</a> 
+            <i class="icon-angle-right"></i>
+          </li>
+          <li>
+            <a href="/#/manage/pwc">PWC</a>
+            <i class="icon-angle-right"></i>
+          </li>
+          <li class="active">
+            Overview
+          </li>
+        </ul>
+
+        <div class="row">
+
+          <!-- START SUMMARY -->
+          <div class="col-xs-12 col-md-6">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4>Bins Status <small>(Showing 10 of 1289 bins)</small></h4>
+              </div>
+              <div class="panel-body">
+
+                <table class="table table-hover" style="font-size: 90%;">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Bin Location</th>
+                      <th width="50%">Fill Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="bin in binsStatus">
+                      <td>{{bin.id}}</td>
+                      <td>{{bin.address}}</td>
+                      <td>
+                        <div class="progress progress-striped active">
+                          <div class="progress-bar"  role="progressbar" aria-valuenow="{{bin.status}}" aria-valuemin="0" aria-valuemax="100" style="width: {{bin.status}}%"
+                               ng-class="{
+                               'progress-bar-success': bin.status < 51, 
+                               'progress-bar-warning': bin.status < 76 && bin.status > 50, 
+                               'progress-bar-danger': bin.status > 75
+                               }">
+                            <span class="sr-only">{{bin.status}}% Filled</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <a class="btn btn-default" href="#/manage/pwc/bin/{{bin.id}}">
+                          <i class="icon-search"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+
+          </div>
+          <!-- END SUMMARY -->
+
+          <!-- START MAP VIEW -->
+          <div class="col-xs-12 col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4>Bins Map View</h4>
+              </div>
+              <div class="panel-body">
+                <img src="images/manage-pwc-live-view.png" class="img-responsive" />
+              </div>
+            </div>
+          </div>
+          <!-- START MAP VIEW -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
