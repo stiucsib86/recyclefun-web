@@ -56,6 +56,9 @@
                 <div>
                   <p ng-bind-html-unsafe="user.bio"></p>
                 </div>
+                <div ng-show="user.created_on">
+                  <p><span><i class="icon-calendar"></i>&nbsp;</span> Member since {{user.created_on}}</p>
+                </div>
                 <div ng-show="user.website">
                   <p>
                     <span><i class="icon-globe"></i>&nbsp;</span>
@@ -92,8 +95,8 @@
                         Early adopters
                       </div>
                     </div>
-                    <a class="more" href="#">
-                      Details <i class="m-icon-swapright m-icon-white"></i>
+                    <a class="more" href="#/badge/1">
+                      Details <i class="icon-circle-arrow-right"></i>
                     </a>                 
                   </div>
 
@@ -103,19 +106,19 @@
                     </div>
                     <div class="details">
                       <div class="number">
-                        1 KG
+                        First 1 KG
                       </div>
                       <div class="desc">                           
                         Total Collection
                       </div>
                     </div>
-                    <a class="more" href="#">
-                      Details <i class="m-icon-swapright m-icon-white"></i>
+                    <a class="more" href="#/badge/2">
+                      Details <i class="icon-circle-arrow-right"></i>
                     </a>                 
                   </div>
 
                   <div ng-show="!IsPageOwner();">
-                    <a href="#/u/{{userid}}/badges" class="btn btn-block btn-primary">
+                    <a href="#/user/{{userid}}/badges" class="btn btn-block btn-primary">
                       View Complete list.
                     </a>
                   </div>
@@ -157,12 +160,8 @@
                             <div class="desc">                           
                               1/4 of a tree has been saved
                             </div>
-                           <!--  <div class="desc">                           
-                              Total Amount Recycled
-                            </div> -->
                           </div>
                           <a class="more" href="#">
-                            View more <i class="icon-circle-arrow-right"></i>
                           </a>                 
                         </div>
                       </div>
@@ -180,7 +179,6 @@
                             </div>
                           </div>
                           <a class="more" href="#">
-                            View more <i class="icon-circle-arrow-right"></i>
                           </a>                 
                         </div>
                       </div>
@@ -194,7 +192,6 @@
                             <div class="desc">Earned</div>
                           </div>
                           <a class="more" href="">
-                            View more <i class="icon-circle-arrow-right"></i>
                           </a>                 
                         </div>
                       </div>
@@ -278,7 +275,9 @@
                             </tr>
                           </tbody>
                         </table>
-                        <h4 class="text-right"><a href="#/user/detailed-transactions" class="more">View All <i class="icon-circle-arrow-right"></i></a></h4>
+                        <h4 class="text-right">
+                          <a href="#/user/detailed-transactions" class="more btn btn-primary">View All <i class="icon-circle-arrow-right"></i></a>
+                        </h4>
                       </div>
                     </div>
                   </div>

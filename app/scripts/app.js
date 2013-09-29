@@ -92,6 +92,13 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         controller: 'PwcBinCtrl'
       })
       // -----------------------------------------------------------------------
+      //                    Badges
+      // -----------------------------------------------------------------------
+      .when('/badge/:badgeId', {
+        templateUrl: 'views/badges/badge.html',
+        controller: 'BadgeCtrl'
+      })
+      // -----------------------------------------------------------------------
       //                    Misc
       // -----------------------------------------------------------------------
       .when('/leaderboard', {

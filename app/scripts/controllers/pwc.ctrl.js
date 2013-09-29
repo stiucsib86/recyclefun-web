@@ -86,21 +86,23 @@ angular.module('recyclefunWebApp')
     }
   };
 
-  Morris.Line({
-    element: 'line-fill-level',
-    data: [
-      {y: '2013-09-23', a: 23},
-      {y: '2013-09-23', a: 24},
-      {y: '2013-09-24', a: 30},
-      {y: '2013-09-25', a: 48},
-      {y: '2013-09-26', a: 68},
-      {y: '2013-09-27', a: 90},
-      {y: '2013-09-28', a: 92}
-    ],
-    xkey: 'y',
-    ykeys: ['a'],
-    labels: ['Fill level']
-  });
+  if (jQuery('#line-fill-level').length > 0) {
+    Morris.Line({
+      element: 'line-fill-level',
+      data: [
+        {y: '2013-09-23', a: 23},
+        {y: '2013-09-23', a: 24},
+        {y: '2013-09-24', a: 30},
+        {y: '2013-09-25', a: 48},
+        {y: '2013-09-26', a: 68},
+        {y: '2013-09-27', a: 90},
+        {y: '2013-09-28', a: 92}
+      ],
+      xkey: 'y',
+      ykeys: ['a'],
+      labels: ['Fill level']
+    });
+  }
 
 
 

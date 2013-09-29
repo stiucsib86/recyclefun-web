@@ -1,4 +1,4 @@
-/*global GetOneMap:false, google:false, alert:false */
+/*global GetOneMap:false, google:false, alert:false, Morris:false */
 
 'use strict';
 
@@ -83,23 +83,25 @@ angular.module('recyclefunWebApp')
 .controller('BinsSearchCtrl', function($http, $scope, $timeout) {
 
   $scope.GetBinsStatistics = function() {
-    Morris.Bar({
-      element: 'bar-example',
-      data: [
-        {y: 'Ang Mo Kio', a: 100, b: 197},
-        {y: 'Bedok', a: 75, b: 562},
-        {y: 'City', a: 50, b: 108},
-        {y: 'Clementi', a: 75, b: 301},
-        {y: 'Hougang', a: 50, b: 339},
-        {y: 'Jurong', a: 68, b: 559},
-        {y: 'Tampines', a: 75, b: 563},
-        {y: 'Queenstown', a: 100, b: 393},
-        {y: 'Woodlands', a: 200, b: 605}
-      ],
-      xkey: 'y',
-      ykeys: ['a', 'b'],
-      labels: ['Number of bins', 'Collection per household']
-    });
+    if (jQuery('#bar-example').length > 0) {
+      Morris.Bar({
+        element: 'bar-example',
+        data: [
+          {y: 'Ang Mo Kio', a: 100, b: 197},
+          {y: 'Bedok', a: 75, b: 562},
+          {y: 'City', a: 50, b: 108},
+          {y: 'Clementi', a: 75, b: 301},
+          {y: 'Hougang', a: 50, b: 339},
+          {y: 'Jurong', a: 68, b: 559},
+          {y: 'Tampines', a: 75, b: 563},
+          {y: 'Queenstown', a: 100, b: 393},
+          {y: 'Woodlands', a: 200, b: 605}
+        ],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Number of bins', 'Collection per household']
+      });
+    }
   };
 
   $scope.InitializeOneMap = function() {

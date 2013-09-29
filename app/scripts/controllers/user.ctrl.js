@@ -37,8 +37,8 @@ angular.module('recyclefunWebApp')
   };
 
   $scope.GetUser();
-
-  if (jQuery('#donut-example')) {
+  
+  if (jQuery('#donut-example').length > 0) {
     Morris.Donut({
       element: 'donut-example',
       data: [

@@ -3071,6 +3071,7 @@ Dashboard stats
 .dashboard-stat.achievement-badge {
   width: 100%;
   max-width: 280px;
+  min-width: 240px;
   display: inline-block;
 }
 
