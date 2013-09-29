@@ -1,16 +1,40 @@
-<div class="dashboard-stat green achievement-badge">
-  <div class="visual">
-    <i class="icon-user"></i>
-  </div>
-  <div class="details">
-    <div class="number">
-      Beta User
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+
+    <h1>Badge Info</h1>
+
+    <!-- BREADCRUMB -->
+    <ul class="breadcrumb">
+      <li>
+        <i class="icon-home"></i>
+        <a href="/#/">Home</a> 
+        <i class="icon-angle-right"></i>
+      </li>
+      <li>
+        <a href="/#/user">Badge</a>
+        <i class="icon-angle-right"></i>
+      </li>
+      <li class="active">
+        Beta User
+      </li>
+    </ul>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div style="margin: auto;width: 250px">
+          <div ng-include="'views/badges/badge-1.tile.tpl.html'"></div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <blockquote>
+          Beta, named after the second letter of the Greek alphabet, is the software development phase following alpha. 
+          It generally begins when the software is feature complete. Software in the beta phase will generally have many more bugs in it than completed software, as well as speed/performance issues and may still cause crashes or data loss. 
+        </blockquote>
+        <p>
+          Users who are awarded with this badge shows high enthusiasm for keeping the environment Green, and are pioneer in this Singapore Recycling project.
+        </p>
+      </div>
     </div>
-    <div class="desc">                           
-      Early adopters
-    </div>
+
   </div>
-  <a class="more" href="#">
-    Details <i class="m-icon-swapright m-icon-white"></i>
-  </a>                 
 </div>
