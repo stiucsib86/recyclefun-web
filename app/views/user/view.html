@@ -17,7 +17,7 @@
         <ul class="breadcrumb">
           <li>
             <i class="icon-home"></i>
-            <a href="/#/">Home</a> 
+            <a href="/#/">Home</a>
             <i class="icon-angle-right"></i>
           </li>
           <li>
@@ -56,6 +56,9 @@
                 <div>
                   <p ng-bind-html-unsafe="user.bio"></p>
                 </div>
+                <div ng-show="user.ezlink_can_no">
+                  <p><span><i class="icon-credit-card"></i>&nbsp;</span> Ez-link CAN number: {{user.ezlink_can_no}}</p>
+                </div>
                 <div ng-show="user.created_on">
                   <p><span><i class="icon-calendar"></i>&nbsp;</span> Member since {{user.created_on}}</p>
                 </div>
@@ -91,13 +94,13 @@
                       <div class="number">
                         Beta User
                       </div>
-                      <div class="desc">                           
+                      <div class="desc">
                         Early adopters
                       </div>
                     </div>
                     <a class="more" href="#/badge/1">
                       Details <i class="icon-circle-arrow-right"></i>
-                    </a>                 
+                    </a>
                   </div>
 
                   <div class="dashboard-stat green achievement-badge">
@@ -108,13 +111,13 @@
                       <div class="number">
                         First 1 KG
                       </div>
-                      <div class="desc">                           
+                      <div class="desc">
                         Total Collection
                       </div>
                     </div>
                     <a class="more" href="#/badge/2">
                       Details <i class="icon-circle-arrow-right"></i>
-                    </a>                 
+                    </a>
                   </div>
 
                   <div ng-show="!IsPageOwner();">
@@ -157,12 +160,12 @@
                             <div class="number">
                               15 kg
                             </div>
-                            <div class="desc">                           
+                            <div class="desc">
                               1/4 of a tree has been saved
                             </div>
                           </div>
                           <a class="more" href="#">
-                          </a>                 
+                          </a>
                         </div>
                       </div>
                       <div class="col-xs-12 col-md-4 responsive" data-tablet="span6" data-desktop="col-xs-12 col-md-3">
@@ -179,7 +182,7 @@
                             </div>
                           </div>
                           <a class="more" href="#">
-                          </a>                 
+                          </a>
                         </div>
                       </div>
                       <div class="col-xs-12 col-md-4 responsive" data-tablet="span6" data-desktop="col-xs-12 col-md-3">
@@ -192,7 +195,7 @@
                             <div class="desc">Earned</div>
                           </div>
                           <a class="more" href="">
-                          </a>                 
+                          </a>
                         </div>
                       </div>
                     </div>
