@@ -1,0 +1,156 @@
+<div class="page-container">
+  <div class="container container-bg-white">
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+
+        <h3 class="page-title">
+          Settings <small>lorem ipsum</small>
+        </h3>
+        <ul class="breadcrumb">
+          <li>
+            <i class="icon-home"></i>
+            <a href="/#/">Home</a> 
+            <i class="icon-angle-right"></i>
+          </li>
+          <li>
+            <a href="/#/user">User</a>
+            <i class="icon-angle-right"></i>
+          </li>
+          <li class="active">
+            Settings
+          </li>
+        </ul>
+
+        <div ng-hide="_loading.GetUserSettings">
+
+          <form name="userProfileForm" class="form-horizontal" role="form" ng-submit="SaveUserSettings();">
+
+            <div class="form-group">
+              <label for="ezlink_can_no" class="col-lg-2 control-label">
+                <div style="max-width: 250px">
+                  <img src="/images/ez-link.jpg" class="img-responsive">
+                </div>
+              </label>
+              <div class="col-lg-10">
+
+                <div style="margin: 20px 0">
+                  <input type="text" class="form-control input-lg" name="ezlink_can_no" ng-model="user.ezlink_can_no" placeholder="16-digit EZ-Link CAN ID">
+                  <span class="help-block">16-digit EZ-Link CAN ID.</span>
+                </div>
+
+                <div class="hidden">
+                  <div>
+                    <span class="help-block"> Your card number is 1000080035812184. You requested it 1 year, 2 months ago.</span>
+                    <span class="help-block"> In case you lose your card, please let us know so we can block future payments to it.</span>
+                  </div>
+
+                  <div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-6">
+                      <input type="text" class="form-control" name="ezlink_can_no" placeholder="16-digit EZ-Link CAN ID">
+                    </div>
+                    <div class="col-lg-6">
+                      <a class="btn btn-primary">Request new card number</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputNameFirst" class="col-lg-2 control-label">
+                First Name
+              </label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="inputNameFirst" ng-model="user.name.first" placeholder="John">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputNameLast" class="col-lg-2 control-label">
+                Last Name
+              </label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="inputNameLast" ng-model="user.name.last" placeholder="Doe">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputWebsite" class="col-lg-2 control-label">
+                Website
+              </label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="inputWebsite" ng-model="user.website" placeholder="http://www.mywebsite.com/">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="inputInterest" class="col-lg-2 control-label">
+                Interest
+              </label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="inputInterest" ng-model="user.interest" placeholder="Doe">
+                <span class="help-block">Comma separated values, e.g. Reading,Running</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputNameLast" class="col-lg-2 control-label">
+                Bio
+              </label>
+              <div class="col-lg-10">
+                <textarea class="form-control" rows="3" name="inputBio" ng-model="user.bio"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputNameLast" class="col-lg-2 control-label">
+                Profile Picture
+              </label>
+              <div class="col-lg-10">
+                <div style="width: 250px">
+                  <a href="http://en.gravatar.com/">
+                    <img src="http://www.gravatar.com/avatar/7d544a39a3c3177ba2a42758ba4a1567.png?s=250" class="img-thumbnail">
+                  </a>
+                  <div style="margin: 5px 0">
+                    <a href="http://en.gravatar.com/" class="btn btn-primary btn-block" target="_blank">
+                      <i class="icon-external-link"></i>&nbsp; Change your profile picture
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix">&nbsp;</div>
+
+            <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-10">
+
+                <div ng-show="_loading.SaveUserSettings">
+                  <button type="submit" class="btn btn-success btn-lg"><i class="icon-ok"></i>&nbsp; Saving...</button>
+                </div>
+                <div ng-hide="_loading.SaveUserSettings">
+                  <button type="submit" class="btn btn-success btn-lg"><i class="icon-ok"></i>&nbsp; Save Changes</button>
+                </div>
+
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div ng-show="_loading.GetUserSettings">
+          <h1>Loading...</h1>
+        </div>
+
+        <div class="spinjs"></div> 
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix">&nbsp;</div>
