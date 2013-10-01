@@ -3,50 +3,18 @@
 'use strict';
 
 angular.module('recyclefunWebApp')
-.controller('ApplicationCtrl', function($http, $location, $scope, $rootScope, $timeout, Facebook) {
+.controller('ApplicationCtrl', function($http, $location, $scope, $rootScope, $timeout, Facebook, appConfig) {
 
-  if (window.location.href.indexOf('localhost') > 0) {
-    // Localhost Environment
-    $rootScope._app = {
-      url: {
-        //api: jQuery.url().attr('protocol') + '://' + 'api.recyclefun.localhost/'
-        api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api.ap01.aws.af.cm/'
-      }
-    };
-    /*
-     * Facebook Initializations
-     */
-    if (typeof Facebook !== 'undefined') {
-      Facebook.init({
-        appId: '516418235114060', // App ID
-        channelUrl: '/channel.html', // Channel File
-        status: true, // check login status
-        cookie: true, // enable cookies to allow the server to access the session
-        xfbml: true, // parse XFBML
-        permissions: 'read_stream, publish_stream, email'
-      });
-    }
-  } else {
-    // Production Environment
-    $rootScope._app = {
-      url: {
-        //api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api-php.azurewebsites.net/index.php/'
-        api: jQuery.url().attr('protocol') + '://' + 'recyclefun-api.ap01.aws.af.cm/'
-      }
-    };
-    /*
-     * Facebook Initializations
-     */
-    if (typeof Facebook !== 'undefined') {
-      Facebook.init({
-        appId: '637970952903072', // App ID
-        channelUrl: '/channel.html', // Channel File
-        status: true, // check login status
-        cookie: true, // enable cookies to allow the server to access the session
-        xfbml: true, // parse XFBML
-        permissions: 'read_stream, publish_stream, email'
-      });
-    }
+  /*
+   * Application Configurations
+   */
+  $rootScope._app = appConfig;
+
+  /*
+   * Facebook Initializations
+   */
+  if (typeof Facebook !== 'undefined') {
+    Facebook.init($rootScope._app.facebook);
   }
 
   $scope.FBLogin = function() {
@@ -99,7 +67,7 @@ angular.module('recyclefunWebApp')
       var notAllowedURL = ['/login', '/register'];
       console.log(notAllowedURL);
       if (notAllowedURL.indexOf($location.path()) > -1) {
-        $location.path('/user/profile');
+        $location.path('/user/' + $rootScope.auth.user.user_id);
       }
     }
   });

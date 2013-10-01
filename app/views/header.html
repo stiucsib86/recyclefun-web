@@ -50,7 +50,7 @@
             <li>
             </li>
             <li class="external">
-              <a href="/#/user/notifications">See all notifications <i class="m-icon-swapright"></i></a>
+              <a href="/#/notifications">See all notifications <i class="m-icon-swapright"></i></a>
             </li>
           </ul>
         </li>
@@ -58,11 +58,11 @@
         <li ng-show="auth.user" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="/#/user/settings/">Settings</a></li>
-            <li><a href="/#/user/profile/">Profile</a></li>
-            <li><a href="/#/user/badges/">Badges</a></li>
+            <li><a href="/#/user/{{auth.user.user_id}}/settings/"><i class="icon-cog"></i> Settings</a></li>
+            <li><a href="/#/user/{{auth.user.user_id}}/profile/"><i class="icon-user"></i> Profile</a></li>
+            <li><a href="/#/user/{{auth.user.user_id}}/badges/"><i class="icon-trophy"></i> Badges</a></li>
             <li class="divider"></li>
-            <li><a href="/#/logout">Logout</a></li>
+            <li><a href="/#/logout"><i class="icon-signout"></i> Logout</a></li>
           </ul>
         </li>
       </ul>
