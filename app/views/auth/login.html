@@ -11,7 +11,9 @@
           <div class="panel-body" style="background: #F8F8F8;">
 
             <a class="btn btn-default btn-block btn-lg btn-primary" ng-click="FBLogin()">
-              <i class="icon-facebook"></i>&nbsp; Login with Facebook
+              <span ng-show="_loading.FBLogin" class="loading-container rotate"><i class="icon-refresh"></i></span>
+              <span ng-hide="_loading.FBLogin"><i class="icon-facebook"></i></span>
+              &nbsp; Login with Facebook
             </a>
             
             <div>&nbsp;</div>

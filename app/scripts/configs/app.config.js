@@ -22,7 +22,7 @@ if ((window.location.href).indexOf('localhost') > 0) {
       status: true, // check login status
       cookie: true, // enable cookies to allow the server to access the session
       xfbml: true, // parse XFBML
-      permissions: 'read_stream, publish_stream, email'
+      permissions: 'read_stream, publish_stream, email, read_friendlists'
     }
   });
 } else {
@@ -43,7 +43,7 @@ if ((window.location.href).indexOf('localhost') > 0) {
       status: true, // check login status
       cookie: true, // enable cookies to allow the server to access the session
       xfbml: true, // parse XFBML
-      permissions: 'read_stream, publish_stream, email'
+      permissions: 'read_stream, publish_stream, email, read_friendlists'
     }
   });
 }

@@ -9,6 +9,7 @@ angular.module('recyclefunWebApp')
    * Application Configurations
    */
   $rootScope._app = appConfig;
+  ($rootScope._loading = $rootScope._loading || {});
 
   /*
    * Facebook Initializations
@@ -18,10 +19,12 @@ angular.module('recyclefunWebApp')
   }
 
   $scope.FBLogin = function() {
+    $rootScope._loading.FBLogin = true;
     Facebook.login();
   };
 
   $rootScope.$on('event.fb.auth.login', function(event, args) {
+    $rootScope._loading.FBLogin = true;
     var authResponse = args.authResponse;
     $http({
       method: 'GET',
@@ -37,10 +40,12 @@ angular.module('recyclefunWebApp')
       // this callback will be called asynchronously
       // when the response is available
       $rootScope.auth = data;
-      console.log('$rootScope.auth', $rootScope.auth);
-    }).error(function() {
+      $rootScope._loading.FBLogin = false;
+    }).error(function(data) {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
+      window.alert(data.message);
+      $rootScope._loading.FBLogin = false;
     });
 
   });
@@ -65,7 +70,6 @@ angular.module('recyclefunWebApp')
     if ($rootScope.auth && $rootScope.auth.user) {
       console.log('Welcome ' + $rootScope.auth.user.name.display_name);
       var notAllowedURL = ['/login', '/register'];
-      console.log(notAllowedURL);
       if (notAllowedURL.indexOf($location.path()) > -1) {
         $location.path('/user/' + $rootScope.auth.user.user_id);
       }
