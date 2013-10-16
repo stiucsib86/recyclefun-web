@@ -76,7 +76,7 @@ angular.module('recyclefunWebApp')
     
     Morris.Bar({
       element: 'bar-transaction',
-      data: graph_data,
+      data: graph_data.reverse(),
       barColors: ['green'],
       xkey: 'y',
       ykeys: ['a'],
