@@ -34,8 +34,8 @@ if ((window.location.href).indexOf('localhost') > 0) {
      */
     appName: 'RecycleIT',
     url: {
-      //api: pageUrlProtocol + '://' + 'recyclefun-api-php.azurewebsites.net/index.php/'
-      api: pageUrlProtocol + '://' + 'recyclefun-api.ap01.aws.af.cm/'
+      api: pageUrlProtocol + '://' + 'recyclefun-api-php.azurewebsites.net/'
+      //api: pageUrlProtocol + '://' + 'recyclefun-api.ap01.aws.af.cm/'
     },
     facebook: {
       appId: '637970952903072', // App ID
