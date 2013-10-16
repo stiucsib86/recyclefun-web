@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('recyclefunWebApp')
-.controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams) {
+.controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams, $timeout) {
 
   $scope._loading = {};
   $scope._error = {};
@@ -29,6 +29,7 @@ angular.module('recyclefunWebApp')
       $scope._loading.GetUser = false;
       $scope._error.message = false;
       $scope.user = data.data;
+      $scope.GetUserTransactions();
     }).error(function(data) {
       $scope._loading.GetUser = false;
       $scope._error.message = data.error;
@@ -36,8 +37,53 @@ angular.module('recyclefunWebApp')
     });
   };
 
+  $scope.GetUserTransactions = function() {
+    $scope._loading.GetUserTransactions = true;
+    $http({
+      method: 'GET',
+      withCredentials: true,
+      url: $rootScope._app.url.api + 'user/transactions',
+      params: {
+        user_id: $routeParams.userid
+      }
+    }).success(function(data) {
+      $scope._loading.GetUserTransactions = false;
+      $scope._error.message = false;
+      $scope.user.transactions = data.data;
+      $scope.RenderTransactionBar();
+    }).error(function(data) {
+      $scope._loading.GetUserTransactions = false;
+      $scope._error.message = data.error;
+      $scope.user.transactions = [];
+      console.warn(data.error);
+    });
+  };
+
   $scope.GetUser();
-  
+
+  $scope.RenderTransactionBar = function() {
+    if (!$scope.user || !$scope.user.transactions) {
+      return;
+    }
+    var graph_data = $scope.user.transactions.reduce(function(data, transaction_detail) {
+      var item = {
+        'y': transaction_detail.transactiondate,
+        'a': transaction_detail.recyclable_amount
+      };
+      data.push(item);
+      return data;
+    }, []);
+    
+    Morris.Bar({
+      element: 'bar-transaction',
+      data: graph_data,
+      barColors: ['green'],
+      xkey: 'y',
+      ykeys: ['a'],
+      labels: ['kg']
+    });
+  };
+
   if (jQuery('#donut-example').length > 0) {
     Morris.Donut({
       element: 'donut-example',
@@ -51,47 +97,8 @@ angular.module('recyclefunWebApp')
         {label: 'misc', value: 1}
       ]
     });
-
-    Morris.Bar({
-      element: 'bar-transaction',
-      data: [
-        {y: '1', a: 0.8},
-        {y: '2', a: 0},
-        {y: '3', a: 0},
-        {y: '4', a: 0.4},
-        {y: '5', a: 0},
-        {y: '6', a: 0},
-        {y: '7', a: 0},
-        {y: '8', a: 0},
-        {y: '9', a: 0},
-        {y: '10', a: 0},
-        {y: '11', a: 0},
-        {y: '12', a: 0},
-        {y: '13', a: 0},
-        {y: '14', a: 0},
-        {y: '15', a: 0},
-        {y: '16', a: 0},
-        {y: '17', a: 0},
-        {y: '18', a: 0},
-        {y: '19', a: 0},
-        {y: '20', a: 0},
-        {y: '21', a: 1.2},
-        {y: '22', a: 0},
-        {y: '23', a: 0.7},
-        {y: '24', a: 0},
-        {y: '25', a: 0},
-        {y: '26', a: 0},
-        {y: '27', a: 0},
-        {y: '28', a: 1.5},
-        {y: '29', a: 0},
-        {y: '30', a: 0},
-
-      ],
-      barColors: ['green'],
-      xkey: 'y',
-      ykeys: ['a'],
-      labels: ['kg']
-    });
+    
+    $scope.RenderTransactionBar();
 
     Morris.Bar({
       element: 'bar-example',
