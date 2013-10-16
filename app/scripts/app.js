@@ -34,6 +34,11 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         templateUrl: 'views/auth/password-reset.html',
         controller: 'PasswordResetCtrl'
       })
+      
+      .when('/notifications', {
+        templateUrl: 'views/user/notifications.html',
+        controller: 'UserNotificationsCtrl'
+      })
       // -----------------------------------------------------------------------
       //                    User
       // -----------------------------------------------------------------------
@@ -41,35 +46,24 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         templateUrl: 'views/user/view.html',
         controller: 'UserProfileCtrl'
       })
-      .when('/user/profile', {
+      .when('/user/:userid', {
         templateUrl: 'views/user/view.html',
         controller: 'UserProfileCtrl'
       })
-      .when('/user/notifications', {
-        templateUrl: 'views/user/notifications.html',
-        controller: 'UserNotificationsCtrl'
+      .when('/user/:userid/profile', {
+        templateUrl: 'views/user/view.html',
+        controller: 'UserProfileCtrl'
       })
-      .when('/user/edit', {
+      .when('/user/:userid/edit', {
         templateUrl: 'views/user/edit.html',
         controller: 'UserEditCtrl'
       })
-      .when('/user/settings', {
+      .when('/user/:userid/settings', {
         templateUrl: 'views/user/settings.html',
         controller: 'UserSettingsCtrl'
       })
-      .when('/user/detailed-transactions', {
+      .when('/user/:userid/detailed-transactions', {
         templateUrl: 'views/user/detailed-transactions.html',
-        controller: 'UserProfileCtrl'
-      })
-      .when('/user/badges', {
-        templateUrl: 'views/user/badges.html',
-        controller: 'UserBadgesCtrl'
-      })
-      // -----------------------------------------------------------------------
-      //                    User Public Profile
-      // -----------------------------------------------------------------------
-      .when('/user/:userid', {
-        templateUrl: 'views/user/view.html',
         controller: 'UserProfileCtrl'
       })
       .when('/user/:userid/badges', {
