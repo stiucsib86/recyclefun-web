@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('recyclefunWebApp')
-.controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams, $timeout) {
+.controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams) {
 
   $scope._loading = {};
   $scope._error = {};
