@@ -8,13 +8,24 @@
     "email": "scott@robbin.co",
     "url": "http://srobbin.com"
   },
-  "version": "2.0.4",
-  "main": ["jquery.backstretch.js"],
+  "main": [
+    "jquery.backstretch.js"
+  ],
   "dependencies": {
     "jquery": "~1.9.1"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/srobbin/jquery-backstretch.git"
-  }
+  },
+  "_release": "2.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.4",
+    "commit": "b9a96f872e535f1e31fa7868be14940d0e00271f"
+  },
+  "_source": "git://github.com/srobbin/jquery-backstretch.git",
+  "_target": "~2.0.4",
+  "_originalSource": "jquery-backstretch",
+  "_direct": true
 }
