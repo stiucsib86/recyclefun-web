@@ -136,7 +136,7 @@ angular.module('recyclefunWebApp')
         {y: 'July', a: 7, b: 65},
         {y: 'Aug', a: 9, b: 90},
         {y: 'Sept', a: 11, b: 90},
-        {y: 'Oct', a: total_this_month, b: 90}
+        {y: 'Oct', a: total_this_month, b: 90} //total amount of October is here. Other month are hard coded
       ],
       xkey: 'y',
       ykeys: ['a'],
