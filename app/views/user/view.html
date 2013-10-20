@@ -316,25 +316,23 @@
                       <thead>
                         <tr class="text-center">
                           <td></td>
-                          <td>Paper</td>
+                          <td ng-repeat="t in user.transactionsByMonth">{{t.recyclable_type_name}}</td>
+                          <!-- <td>Paper</td>
                           <td>Can</td>
                           <td>Glass</td>
                           <td>Plastic</td>
                           <td>Cloth</td>
                           <td>Garden</td>
-                          <td>misc</td>
+                          <td>misc</td> -->
                         </tr>
                       </thead>
                       <tbody>
                         <tr class="text-center">
+                          <!-- style="color: red; font-weight: bold; background: #EFEFEF;" -->
                           <td>Current month (kg)</td>
-                          <td>10</td>
-                          <td>5</td>
-                          <td>7</td>
-                          <td style="color: red; font-weight: bold; background: #EFEFEF;">4</td>
-                          <td>6</td>
-                          <td style="color: red; font-weight: bold; background: #EFEFEF;">1</td>
-                          <td style="color: red; font-weight: bold; background: #EFEFEF;">1</td>
+                          
+                          <td ng-repeat="t in user.transactionsByMonth">{{t.recyclable_amount}}</td>
+                          
                         </tr>
                         <tr style="text-align: center;">
                           <td>Last month (kg)</td>

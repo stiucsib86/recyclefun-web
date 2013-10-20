@@ -57,6 +57,28 @@ angular.module('recyclefunWebApp')
       $scope.user.transactions = [];
       console.warn(data.error);
     });
+
+    // get summary in current month
+    var api_url = 'http://recyclefun-api-php.azurewebsites.net/'; //$rootScope._app.url.api
+    $http({
+      method: 'GET',
+      withCredentials: true,
+      url: api_url + 'user/transactions_by_month',
+      params: {
+        user_id: $routeParams.userid,
+        month: 10
+      }
+    }).success(function(data) {
+      $scope._loading.GetUserTransactionsByMonth = false;//???
+      $scope._error.message = false;
+      $scope.user.transactionsByMonth = data.data;
+      $scope.RenderTransactionsByMonthBar();
+    }).error(function(data) {
+      $scope._loading.GetUserTransactionsByMonth = false;//???
+      $scope._error.message = data.error;
+      $scope.user.transactionsByMonth = [];
+      console.warn(data.error);
+    });
   };
 
   $scope.GetUser();
@@ -84,21 +106,26 @@ angular.module('recyclefunWebApp')
     });
   };
 
-  if (jQuery('#donut-example').length > 0) {
+  //Dan's code: to generate dynamic data.
+  $scope.RenderTransactionsByMonthBar = function() {
+    if (!$scope.user || !$scope.user.transactionsByMonth) {
+      return;
+    }
+    var graph_data = $scope.user.transactionsByMonth.reduce(function(data, transaction_detail) {
+      var item = {
+        'label': transaction_detail.recyclable_type_name,
+        'value': transaction_detail.recyclable_amount
+      };
+      data.push(item);
+      return data;
+    }, []);
+
+    var total_this_month = graph_data.reduce(function(result, d){result+=d.value;return result;},0);
+
     Morris.Donut({
       element: 'donut-example',
-      data: [
-        {label: 'Paper', value: 6},
-        {label: 'Can', value: 3},
-        {label: 'Glass', value: 7},
-        {label: 'Plastic', value: 4},
-        {label: 'Cloth', value: 4},
-        {label: 'Garden', value: 2},
-        {label: 'misc', value: 1}
-      ]
+      data: graph_data
     });
-    
-    $scope.RenderTransactionBar();
 
     Morris.Bar({
       element: 'bar-example',
@@ -107,13 +134,50 @@ angular.module('recyclefunWebApp')
         {y: 'May', a: 4, b: 65},
         {y: 'Jun', a: 6, b: 40},
         {y: 'July', a: 7, b: 65},
-        {y: 'Aug', a: 9, b: 90}
+        {y: 'Aug', a: 9, b: 90},
+        {y: 'Sept', a: 11, b: 90},
+        {y: 'Oct', a: total_this_month, b: 90}
       ],
       xkey: 'y',
       ykeys: ['a'],
-      labels: ['Series A']
+      labels: ['Total']
     });
-  }
+    
+  };
+
+  // if (jQuery('#donut-example').length > 0) {
+  //   Morris.Donut({
+  //     element: 'donut-example',
+  //     data: [
+  //       {label: 'Paper', value: 6},
+  //       {label: 'Can', value: 3},
+  //       {label: 'Glass', value: 7},
+  //       {label: 'Plastic', value: 4},
+  //       {label: 'Cloth', value: 4},
+  //       {label: 'Garden', value: 2},
+  //       {label: 'misc', value: 1}
+  //     ]
+  //   });
+    
+    $scope.RenderTransactionBar();
+    $scope.RenderTransactionsByMonthBar();
+
+    // Morris.Bar({
+    //   element: 'bar-example',
+    //   data: [
+    //     {y: 'April', a: 5, b: 40},
+    //     {y: 'May', a: 4, b: 65},
+    //     {y: 'Jun', a: 6, b: 40},
+    //     {y: 'July', a: 7, b: 65},
+    //     {y: 'Aug', a: 9, b: 90},
+    //     {y: 'Sept', a: 11, b: 90},
+    //     {y: 'Oct', a: 9, b: 90}
+    //   ],
+    //   xkey: 'y',
+    //   ykeys: ['a'],
+    //   labels: ['Total']
+    // });
+  // }
 
 })
 .controller('UserSettingsCtrl', function($http, $scope, $rootScope) {
