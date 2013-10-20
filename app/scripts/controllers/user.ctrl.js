@@ -60,7 +60,7 @@ angular.module('recyclefunWebApp')
 
     // get summary in current month
     var api_url = 'http://recyclefun-api-php.azurewebsites.net/';//$rootScope._app.url.api;
-    var current_month = 9; 
+    var current_month = 9;
     var perfect_data = {
      'Paper':0,
      'Can':0,
