@@ -68,7 +68,6 @@ angular.module('recyclefunWebApp')
 
   $scope.$watch('auth', function() {
     if ($rootScope.auth && $rootScope.auth.user) {
-      console.log('Welcome ' + $rootScope.auth.user.name.display_name);
       var notAllowedURL = ['/login', '/register'];
       if (notAllowedURL.indexOf($location.path()) > -1) {
         $location.path('/user/' + $rootScope.auth.user.user_id);
