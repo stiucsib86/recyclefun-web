@@ -259,7 +259,10 @@
                   <div class="panel-body">
                     <div class="row">
                       <div class="col-xs-12 col-md-6">
-                        <div id="bar-transaction"></div>
+                        <div ng-show="morrisBarTransaction" id="bar-transaction"></div>
+                        <div ng-hide="morrisBarTransaction" class="text-center" style="padding: 20px;">
+                          No graph data yet
+                        </div>
                       </div>
                       <div class="col-xs-12 col-md-6">
                         <table class="table table-hover table-condensed">
@@ -281,6 +284,9 @@
                             <tr ng-hide="_loading.GetUserTransactions" class="text-center" ng-repeat="tran in user.transactions">
                               <td>{{tran.transactiondate}}</td>
                               <td style='font-style:italic'>You have recycled {{tran.recyclable_amount}} kg of {{tran.recyclable_type_name}}. </td>
+                            </tr>
+                            <tr>
+                              <td colspan="2" class="text-center">No transaction data yet.</td>
                             </tr>
                           </tbody>
                         </table>
