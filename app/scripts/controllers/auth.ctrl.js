@@ -142,4 +142,60 @@ angular.module('recyclefunWebApp')
     }
   })();
 
+})
+.controller('PasswordChangeCtrl', function($http, $scope, $rootScope, $routeParams) {
+
+  $scope.frmInput = {};
+  $scope.passwordChangeForm = {};
+
+  $scope.PasswordChangeFormSubmit = function() {
+    var $this = this;
+
+    if (!jQuery('form[name=passwordChangeForm]').valid()) {
+      return false;
+    }
+
+    $http({
+      method: 'POST',
+      withCredentials: true,
+      url: $rootScope._app.url.api + 'auth/password_change',
+      data: {
+        password: $scope.frmInput.password
+      }
+    }).success(function(data) {
+      $scope.passwordChangeForm._completed = true;
+      $scope.passwordChangeForm._successMessage = data.message;
+      $scope.frmInput.password = '';
+      $scope.frmInput.confirmPassword = '';
+      $scope.passwordChangeForm._errorMessage = '';
+    }).error(function(data) {
+      $scope.passwordChangeForm._errorMessage = data.message || 'Error occurred while changing password.';
+    });
+  };
+
+  $scope.InitializePage = function() {
+    jQuery('form[name=passwordChangeForm]').validate({
+      rules: {
+        password: {
+          minlength: 8,
+          required: true
+        },
+        confirmPassword: {
+          equalTo: '[name=password]'
+        }
+      },
+      highlight: function(element) {
+        jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+      },
+      success: function(element) {
+        jQuery(element).html('<i class="icon-ok"></i>').addClass('valid')
+        .closest('.form-group').removeClass('has-error').addClass('has-success');
+      }
+    });
+  };
+
+  (function() {
+    $scope.InitializePage();
+  })();
+
 });

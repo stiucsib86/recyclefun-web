@@ -34,6 +34,10 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         templateUrl: 'views/auth/password-reset.html',
         controller: 'PasswordResetCtrl'
       })
+      .when('/auth/change-password', {
+        templateUrl: 'views/auth/password-change.html',
+        controller: 'PasswordChangeCtrl'
+      })
       
       .when('/notifications', {
         templateUrl: 'views/user/notifications.html',

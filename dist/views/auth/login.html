@@ -15,33 +15,35 @@
               <span ng-hide="_loading.FBLogin"><i class="icon-facebook"></i></span>
               &nbsp; Login with Facebook
             </a>
-            
+
             <div>&nbsp;</div>
             <div class="text-center">or</div> 
             <div>&nbsp;</div>
 
             <form name="loginForm" ng-submit="Login();">
-              
+
               <div ng-show="loginForm._errorMessage" class="alert alert-danger">
                 <span ng-bind-html-unsafe="loginForm._errorMessage"></span>
               </div>
-              
+
               <div class="form-group">
                 <input name="inputEmail" ng-model="inputEmail" type="email" class="form-control" placeholder="Enter email" required="">
               </div>
               <div class="form-group">
                 <input name="inputPassword" ng-model="inputPassword" type="password" class="form-control" placeholder="Password" required="">
               </div>
-              
-              <div class="pull-right">
-                <button type="submit" class="btn btn-default btn-success">Login <i class="icon-circle-arrow-right"></i></button>
-              </div>
-              
-              <div class="form-group">
-                <div class="checkbox">
-                  <label>
-                    <input name="inputRemember" ng-model="inputRemember" type="checkbox"> Remember me
-                  </label>
+
+              <div class="form-inline">
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input name="inputRemember" ng-model="inputRemember" type="checkbox"> Remember me
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group pull-right">
+                  <button type="submit" class="btn btn-default btn-success">Login <i class="icon-circle-arrow-right"></i></button>
                 </div>
               </div>
             </form>
