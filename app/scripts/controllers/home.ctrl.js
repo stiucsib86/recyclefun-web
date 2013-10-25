@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('recyclefunWebApp')
-.controller('LeaderboardCtrl', function($scope) {
+.controller('LeaderboardCtrl', function($scope, $timeout) {
 
   $scope.recyclingStatistics = [
     {'id': 1, 'player': 'Jurong', 'wastetotal': '475,918', 'average_per_house': '0.5592', 'recycle_percentage': '5.48', 'paper': '330887', 'can': '9137', 'glass': '16653', 'plastic': '49460', 'cloth': '30347', 'misc': '39434', 'garden': '0', 'month': '1\/1\/2013', 'inc': 1, 'dec': 0, 'difference': '21', 'badge1': 1, 'badge2': 1, 'badge3': 1},
@@ -21,7 +21,13 @@ angular.module('recyclefunWebApp')
 
     var visualization;
 
+    var GetRegionsVisualizationLoaded = false;
     var GetRegionsVisualization = function() {
+      if (GetRegionsVisualizationLoaded) {
+        return;
+      }
+      GetRegionsVisualizationLoaded = true;
+      console.log('GetRegionsVisualization...');
       $scope.recyclingStatistics.map(function(regionInfo) {
         drawVisualization(regionInfo);
       });
@@ -60,7 +66,7 @@ angular.module('recyclefunWebApp')
           ['Cloth', parseFloat(regionInfo.cloth)],
           ['Miscellaneous', parseFloat(regionInfo.misc)]
         ]);
-        
+
         // Set chart options
         var options_pie = {'title': regionInfo.player + ' Recycle Category',
           'width': 535,
@@ -78,8 +84,11 @@ angular.module('recyclefunWebApp')
       query.send(handleQueryResponse);
     };
 
-    google.load('visualization', '1', {'callback': 'console.log("Workaround for blank page. Read http://stackoverflow.com/questions/9519673/why-does-google-load-cause-my-page-to-go-blank ")', packages: ['piechart', 'corechart', 'geomap']});
+    google.load('visualization', '1', {'callback': 'console.log("Workaround for blank page. Read http://stackoverflow.com/questions/9519673/why-does-google-load-cause-my-page-to-go-blank ");', packages: ['piechart', 'corechart', 'geomap']});
     google.setOnLoadCallback(GetRegionsVisualization);
+    $timeout(function() {
+      GetRegionsVisualization();
+    }, 2000);
   })();
 
 })
