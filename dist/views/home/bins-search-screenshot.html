@@ -8,16 +8,14 @@
         <div class="page-header">
           <h2>Singapore Recycling Bins</h2>
         </div>
-        
+
         <div class="panel panel-default">
           <!-- <div class="panel-heading">
             <h4>Search for recycling bin</h4>
           </div> -->
           <div class="panel-body">
-            <div class="map-container">
-              <img src="/images/screenshots/serangoon-bins-location.png">
-              <div class="clearfix">&nbsp;</div>
-            </div>
+            <img class="img-responsive" src="/images/screenshots/serangoon-bins-location.png">
+            <div class="clearfix">&nbsp;</div>
 
             <form class="form-horizontal" role="form">
               <div class="form-group">
@@ -49,7 +47,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="row-fluid" ng-repeat="bin in recyclingBinLocations | filter:recyclingBinLocationsFilter | limitTo:20">
+                <tr class="row-fluid" ng-repeat="bin in recyclingBinLocations| filter:recyclingBinLocationsFilter | limitTo:20">
                   <td class="col-xs-1">
                     {{bin.region}}
                   </td>
@@ -57,13 +55,13 @@
                     {{bin.block}}, {{bin.street}} <span ng-show="bin.postal">({{bin.postal}})</span>
                   </td>
                   <td class="col-xs-1">
-                    {{bin.no_of_bin || 1}}
+                    {{bin.no_of_bin|| 1}}
                   </td>
                   <td class="col-xs-5">
-                    {{bin.description || 'For the collection of newspaper magazine junk mail paper packaging and other used paper plastic and glass containers drink cans metal containers and clothing' }}
+                    {{bin.description|| 'For the collection of newspaper magazine junk mail paper packaging and other used paper plastic and glass containers drink cans metal containers and clothing' }}
                   </td>
                   <td class="col-xs-2">
-                    {{bin.collection_day || 'Tuesday & Friday'}}
+                    {{bin.collection_day|| 'Tuesday & Friday'}}
                   </td>
                 </tr>
               </tbody>
@@ -85,7 +83,7 @@
         </div>
 
       </div>
-      
+
     </div>
   </div>
 </div>
