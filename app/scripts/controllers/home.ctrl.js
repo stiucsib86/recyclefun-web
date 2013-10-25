@@ -139,7 +139,9 @@ angular.module('recyclefunWebApp')
   };
 
   (function() {
-    $scope.InitializeOneMap();
+    if (jQuery('#divMain').length > 0) {
+      $scope.InitializeOneMap();
+    }
     $scope.GetBinsStatistics();
     $scope.GetBinsLocation();
   })();

@@ -107,6 +107,10 @@ angular.module('recyclefunWebApp', ['FacebookProvider'])
         templateUrl: 'views/home/bins-search.html',
         controller: 'BinsSearchCtrl'
       })
+      .when('/bins-search-2', {
+        templateUrl: 'views/home/bins-search-screenshot.html',
+        controller: 'MainCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
