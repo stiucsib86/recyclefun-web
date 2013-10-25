@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('recyclefunWebApp')
-.controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams) {
+.controller('UserProfileCtrl', function($http, $scope, $rootScope, $routeParams, $timeout) {
 
   $scope._loading = {};
   $scope._error = {};
@@ -108,21 +108,23 @@ angular.module('recyclefunWebApp')
     var graph_data = $scope.user.transactions.reduce(function(data, transaction_detail) {
       var item = {
         'y': transaction_detail.transactiondate,
-        'a': transaction_detail.recyclable_amount
+        'a': parseFloat(transaction_detail.recyclable_amount)
       };
       data.push(item);
       return data;
     }, []);
 
     if (jQuery('#bar-transaction').length > 0) {
-      Morris.Bar({
-        element: 'bar-transaction',
-        data: graph_data.reverse(),
-        barColors: ['green'],
-        xkey: 'y',
-        ykeys: ['a'],
-        labels: ['kg']
-      });
+      $timeout(function() {
+        Morris.Bar({
+          element: 'bar-transaction',
+          data: graph_data.reverse(),
+          barColors: ['green'],
+          xkey: 'y',
+          ykeys: ['a'],
+          labels: ['kg']
+        });
+      }, 1000);
     }
   };
 
@@ -169,7 +171,7 @@ angular.module('recyclefunWebApp')
           graph_data.push({
             y: k,
             a: monthly_total
-          }); 
+          });
         }
       }
     }
