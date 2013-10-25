@@ -21,62 +21,65 @@ angular.module('recyclefunWebApp')
 
     var visualization;
 
-    function drawVisualization() {
+    var GetRegionsVisualization = function() {
+      $scope.recyclingStatistics.map(function(regionInfo) {
+        drawVisualization(regionInfo);
+      });
+    };
+
+    var drawVisualization = function(regionInfo) {
+
+      var handleQueryResponse = function(response) {
+        if (response.isError()) {
+          alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+          return;
+        }
+
+        var dataTable = response.getDataTable();
+        //construct view for 2 different charts
+        var dataView_bar = new google.visualization.DataView(dataTable);
+        dataView_bar.setColumns([6, 7]);
+        visualization = new google.visualization.BarChart(document.getElementById('visualization-chart-id-' + regionInfo.id));
+        // Set chart options
+        var options = {'title': regionInfo.player + ' Recycle over times (kg)',
+          'width': 535,
+          'height': 500
+        };
+        visualization.draw(dataView_bar, options);
+
+        var pie_chart = new google.visualization.PieChart(document.getElementById('pie-chart-id-' + regionInfo.id));
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Category');
+        data.addColumn('number', 'Kg');
+        data.addRows([
+          ['Paper', parseFloat(regionInfo.paper)],
+          ['Can', parseFloat(regionInfo.can)],
+          ['Glass', parseFloat(regionInfo.glass)],
+          ['Plastic', parseFloat(regionInfo.plastic)],
+          ['Cloth', parseFloat(regionInfo.cloth)],
+          ['Miscellaneous', parseFloat(regionInfo.misc)]
+        ]);
+        
+        // Set chart options
+        var options_pie = {'title': regionInfo.player + ' Recycle Category',
+          'width': 535,
+          'height': 300,
+          is3D: true
+        };
+
+        pie_chart.draw(data, options_pie);
+      };
+
       var query = new google.visualization.Query('https://spreadsheets.google.com/tq?key=0Ap3K3Evv9lLsdGdtTGpWTXZtS1NMS2dPaURIV2tLekE&pub=1');
-
       // Apply query language.
-      query.setQuery('SELECT E,F,G,H,I,J,M,L WHERE B = "Clementi" ORDER BY M');
-
+      query.setQuery('SELECT E,F,G,H,I,J,M,L WHERE B = "' + regionInfo.player + '" ORDER BY M');
       // Send the query with a callback function.
       query.send(handleQueryResponse);
-    }
-
-    function handleQueryResponse(response) {
-      if (response.isError()) {
-        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-        return;
-      }
-
-      var dataTable = response.getDataTable();
-
-      //construct view for 2 different charts
-      var dataView_bar = new google.visualization.DataView(dataTable);
-      dataView_bar.setColumns([6, 7]);
-
-      visualization = new google.visualization.BarChart(document.getElementById('visualization-chart-id'));
-      // Set chart options
-      var options = {'title': 'Clementi Recycle over times (kg)',
-        'width': 535,
-        'height': 500
-      };
-      visualization.draw(dataView_bar, options);
-
-      var pie_chart = new google.visualization.PieChart(document.getElementById('pie-chart-id'));
-
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Category');
-      data.addColumn('number', 'Kg');
-      data.addRows([
-        ['Paper', 117350],
-        ['Can', 13522],
-        ['Glass', 36548],
-        ['Plastic', 35094],
-        ['Cloth', 3401],
-        ['Miscellaneous', 5133]
-      ]);
-
-      // Set chart options
-      var options_pie = {'title': 'Clementi Recycle Category',
-        'width': 535,
-        'height': 300,
-        is3D: true
-      };
-
-      pie_chart.draw(data, options_pie);
-    }
+    };
 
     google.load('visualization', '1', {'callback': 'console.log("Workaround for blank page. Read http://stackoverflow.com/questions/9519673/why-does-google-load-cause-my-page-to-go-blank ")', packages: ['piechart', 'corechart', 'geomap']});
-    google.setOnLoadCallback(drawVisualization);
+    google.setOnLoadCallback(GetRegionsVisualization);
   })();
 
 })

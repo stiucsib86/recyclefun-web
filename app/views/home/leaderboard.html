@@ -31,9 +31,9 @@
                 <tr ng-repeat="stat in recyclingStatistics">
                   <td>{{stat.id}}</td>
                   <td>
-                    <a data-toggle="modal" href="#myModal">{{stat.player}}</a>
+                    <a data-toggle="modal" href="#regionStatisticsModal-{{stat.id}}">{{stat.player}}</a>
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="regionStatisticsModal-{{stat.id}}" tabindex="-1" role="dialog" aria-labelledby="regionStatisticsModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -41,8 +41,8 @@
                             <h4 class="modal-title">Statistics for {{stat.player}}</h4>
                           </div>
                           <div class="modal-body">
-                            <div id="visualization-chart-id"></div>
-                            <div id="pie-chart-id"></div>
+                            <div id="visualization-chart-id-{{stat.id}}"></div>
+                            <div id="pie-chart-id-{{stat.id}}"></div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
