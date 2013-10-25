@@ -257,8 +257,10 @@
                   <div class="panel-body">
                     <div class="row">
                       <div class="col-xs-12 col-md-6">
-                        <div ng-show="morrisBarTransaction" id="bar-transaction"></div>
-                        <div ng-hide="morrisBarTransaction" class="text-center" style="padding: 20px">
+                        <div ng-show="user.transactions">
+                          <div id="bar-transaction"></div>
+                        </div>
+                        <div ng-hide="user.transactions" class="text-center" style="padding: 50px 0">
                           No graph data yet
                         </div>
                       </div>
@@ -281,7 +283,11 @@
                             </tr>
                             <tr ng-hide="_loading.GetUserTransactions" class="text-center" ng-repeat="tran in user.transactions">
                               <td>{{tran.transactiondate}}</td>
-                              <td style="font-style:italic">You have recycled {{tran.recyclable_amount}} kg of {{tran.recyclable_type_name}}. </td>
+                              <td style="font-style:italic">
+                                <span ng-show="tran.recyclable_amount > 0">You have recycled {{tran.recyclable_amount}} kg of {{tran.recyclable_type_name}}. </span>
+                                <span ng-hide="tran.recyclable_amount > 0">You have recycled {{tran.recyclable_type_name}}. </span>
+                                
+                              </td>
                             </tr>
                             <tr>
                               <td colspan="2" class="text-center">No transaction data yet.</td>
@@ -305,49 +311,38 @@
                     <h4>Monthly Contribution</h4>
                   </div>
                   <div class="panel-body">
-
+                    
                     <div class="row">
                       <div class="col-xs-12 col-md-6">
-                        <div id="donut-example"></div>
+                        <div id="morris-donut-current-month"></div>
                       </div>
                       <div class="col-xs-12 col-md-6">
-                        <div id="bar-example"></div>
+                        <div id="morris-bar-monthly"></div>
                       </div>
                     </div>
-
 
                     <table class="table table-hover">
                       <thead>
                         <tr class="text-center">
                           <td></td>
-                          <td ng-repeat="t in user.transactionsByMonth">{{t.recyclable_type_name}}</td>
-                          <!-- <td>Paper</td>
-                          <td>Can</td>
-                          <td>Glass</td>
-                          <td>Plastic</td>
-                          <td>Cloth</td>
-                          <td>Garden</td>
-                          <td>misc</td> -->
+                          <td ng-repeat="t in user.transactionsCurrentMonth">{{t.recyclable_type_name}}</td>
                         </tr>
                       </thead>
                       <tbody>
                         <tr class="text-center">
-                          <!-- style="color: red; font-weight: bold; background: #EFEFEF;" -->
                           <td>Current month (kg)</td>
-                          
-                          <td ng-repeat="t in user.transactionsByMonth">{{t.recyclable_amount}}</td>
-                          
+                          <td ng-repeat="t in user.transactionsCurrentMonth">{{t.recyclable_amount}}</td>
                         </tr>
-                        <tr style="text-align: center">
+<!--                        <tr style="text-align: center;">
                           <td>Last month (kg)</td>
                           <td>40</td>
                           <td>14</td>
                           <td>6</td>
                           <td>9</td>
-                          <td style="color: red; font-weight: bold; background: #EFEFEF">4</td>
-                          <td style="color: red; font-weight: bold; background: #EFEFEF">3</td>
-                          <td style="color: red; font-weight: bold; background: #EFEFEF">2</td>
-                        </tr>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF;">4</td>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF;">3</td>
+                          <td style="color: red; font-weight: bold; background: #EFEFEF;">2</td>
+                        </tr>-->
                       </tbody>
                     </table>
 
