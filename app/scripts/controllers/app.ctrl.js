@@ -52,7 +52,6 @@ angular.module('recyclefunWebApp')
 
   // Connect to backend for authentication
   $rootScope.GetAuth = function() {
-    $scope._loading.EmailLogin = true;
     $http({
       method: 'GET',
       withCredentials: true,
@@ -62,14 +61,8 @@ angular.module('recyclefunWebApp')
       }
     }).success(function(data) {
       $rootScope.auth = data;
-      $timeout(function() {
-        $scope._loading.EmailLogin = false;
-      }, 1000);
     }).error(function(data) {
       console.warn(data.message);
-      $timeout(function() {
-        $scope._loading.EmailLogin = false;
-      }, 1000);
     });
   };
 
@@ -83,6 +76,7 @@ angular.module('recyclefunWebApp')
   });
 
   $scope.Login = function() {
+    $scope._loading.EmailLogin = true;
     var $this = this;
     if ($this.loginForm.$valid) {
       $http({
@@ -96,8 +90,14 @@ angular.module('recyclefunWebApp')
         }
       }).success(function() {
         $rootScope.GetAuth();
+        $timeout(function() {
+          $scope._loading.EmailLogin = false;
+        }, 2000);
       }).error(function(data) {
         $this.loginForm._errorMessage = (data.message);
+        $timeout(function() {
+          $scope._loading.EmailLogin = false;
+        }, 2000);
       });
     }
     return false;
