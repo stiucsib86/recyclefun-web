@@ -8,6 +8,9 @@ angular.module('recyclefunWebApp')
   $scope._loading = {};
   $scope._error = {};
 
+  $scope.current_date = new Date();
+  $scope.current_year_month = $scope.current_date.getFullYear() + '-' + ("0" + ($scope.current_date.getMonth() + 1)).slice(-2);
+
   $scope.userid = $routeParams.userid;
 
   $scope.IsPageOwner = function() {
@@ -39,6 +42,7 @@ angular.module('recyclefunWebApp')
 
   $scope.GetUserTransactions = function() {
     $scope._loading.GetUserTransactions = true;
+
     $http({
       method: 'GET',
       withCredentials: true,
@@ -58,69 +62,49 @@ angular.module('recyclefunWebApp')
       console.warn(data.error);
     });
 
-    // get summary in current month
-    var current_month = 9;
-    var perfect_data = {
-      'Paper': 0,
-      'Can': 0,
-      'Glass': 0,
-      'Plastic': 0,
-      'Cloth': 0,
-      'Garden': 0,
-      'misc': 0
-    };
-
     $http({
       method: 'GET',
       withCredentials: true,
-      url: $rootScope._app.url.api + 'user/transactions_by_month',
+      url: $rootScope._app.url.api + 'user/transactions_by_months',
       params: {
         user_id: $routeParams.userid,
-        month: current_month,
-        year: 2013
+        month: $scope.current_date.getMonth() + 1,
+        year: $scope.current_date.getFullYear()
       }
     }).success(function(data) {
       $scope._loading.GetUserTransactionsByMonth = false;
       $scope._error.message = false;
-      //to fill empty field in recyclable_type_name of data.data
-      if (!data.data) {
-        data.data = [
-          {
-            recyclable_amount: "0",
-            recyclable_type_name: "Paper",
-            month: "10",
-            year: "2013"
-          }
-        ];
+      if (data.data) {
+        $scope.user.transactionsByMonths = data.data;
+      } else {
+        $scope.user.transactionsByMonths = [];
       }
-      var tmp_data = data.data.map(function(ele) {
-        perfect_data[ele.recyclable_type_name] = 1;
-        return ele;
-      });
-      for (var obj in perfect_data) {
-        if (perfect_data.hasOwnProperty(obj) && !perfect_data[obj]) {
-          tmp_data.push({recyclable_type_name: obj, recyclable_amount: 0});
-        }
-      }
-      $scope.user.transactionsByMonth = tmp_data;
-      $scope.RenderTransactionsByMonthBar();
     }).error(function(data) {
       $scope._loading.GetUserTransactionsByMonth = false;
       $scope._error.message = data.error;
-      $scope.user.transactionsByMonth = [];
+      $scope.user.transactionsByMonths = [];
       console.warn(data.error);
     });
   };
 
   $scope.GetUser();
 
+  $scope.$watch('user.transactionsByMonths', function(newValue) {
+    if (newValue && typeof newValue[$scope.current_year_month] !== 'undefined') {
+      $scope.user.transactionsCurrentMonth = newValue[$scope.current_year_month];
+    }
+    $scope.RenderTransactionsByMonthsBar();
+  });
+
+  $scope.$watch('user.transactionsByMonths', function(newValue) {
+    $scope.RenderTransactionsByCurrentMonth();
+  });
+
   $scope.RenderTransactionBar = function() {
     if (!$scope.user || !$scope.user.transactions) {
-      $scope.morrisBarTransaction = false;
       return;
     }
 
-    $scope.morrisBarTransaction = true;
     var graph_data = $scope.user.transactions.reduce(function(data, transaction_detail) {
       var item = {
         'y': transaction_detail.transactiondate,
@@ -130,93 +114,78 @@ angular.module('recyclefunWebApp')
       return data;
     }, []);
 
-    Morris.Bar({
-      element: 'bar-transaction',
-      data: graph_data.reverse(),
-      barColors: ['green'],
-      xkey: 'y',
-      ykeys: ['a'],
-      labels: ['kg']
-    });
+    if (jQuery('#bar-transaction').length > 0) {
+      Morris.Bar({
+        element: 'bar-transaction',
+        data: graph_data.reverse(),
+        barColors: ['green'],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['kg']
+      });
+    }
   };
 
-  //Dan's code: to generate dynamic data.
-  $scope.RenderTransactionsByMonthBar = function() {
-    if (!$scope.user || !$scope.user.transactionsByMonth || !($scope.user.transactionsByMonth).length) {
+  $scope.RenderTransactionsByCurrentMonth = function() {
+    // CURRENT MONTH GRAPH - MORRIS BAR
+    if (!$scope.user || !$scope.user.transactionsCurrentMonth) {
       return;
     }
-
-    var graph_data = $scope.user.transactionsByMonth.reduce(function(data, transaction_detail) {
+    // Map "transactionsCurrentMonth" to Morris "label,value" format
+    var graph_data = $scope.user.transactionsCurrentMonth.reduce(function(data, transaction_detail) {
       var item = {
         'label': transaction_detail.recyclable_type_name,
         'value': transaction_detail.recyclable_amount
       };
-
       data.push(item);
       return data;
     }, []);
-
-    var total_this_month = graph_data.reduce(function(result, d) {
-      result += d.value;
-      return result;
-    }, 0);
-
-    Morris.Donut({
-      element: 'donut-example',
-      data: graph_data
-    });
-
-    Morris.Bar({
-      element: 'bar-example',
-      data: [
-        {y: 'April', a: 5, b: 40},
-        {y: 'May', a: 4, b: 65},
-        {y: 'Jun', a: 6, b: 40},
-        {y: 'July', a: 7, b: 65},
-        {y: 'Aug', a: 9, b: 90},
-        {y: 'Sept', a: 11, b: 90},
-        {y: 'Oct', a: total_this_month, b: 90} //total amount of October is here. Other month are hard coded
-      ],
-      xkey: 'y',
-      ykeys: ['a'],
-      labels: ['Total']
-    });
-
+    // Render Graph if exist
+    if (jQuery('#morris-donut-current-month').length > 0) {
+      Morris.Donut({
+        element: 'morris-donut-current-month',
+        data: graph_data
+      });
+    }
   };
 
-  // if (jQuery('#donut-example').length > 0) {
-  //   Morris.Donut({
-  //     element: 'donut-example',
-  //     data: [
-  //       {label: 'Paper', value: 6},
-  //       {label: 'Can', value: 3},
-  //       {label: 'Glass', value: 7},
-  //       {label: 'Plastic', value: 4},
-  //       {label: 'Cloth', value: 4},
-  //       {label: 'Garden', value: 2},
-  //       {label: 'misc', value: 1}
-  //     ]
-  //   });
+  //Dan's code: to generate dynamic data.
+  $scope.RenderTransactionsByMonthsBar = function() {
+    // MONTHLY GRAPH - MORRIS BAR
+    if (!$scope.user || !$scope.user.transactionsByMonths) {
+      return;
+    }
+    var graph_data = [];
+    // Map "transactionsByMonths" to Morris 'y: label, a: value' format
+    var transactionsByMonths = $scope.user.transactionsByMonths;
+    for (var k in transactionsByMonths) {
+      if (transactionsByMonths.hasOwnProperty(k)) {
+        var monthly_data = transactionsByMonths[k];
+        if (monthly_data) {
+          var monthly_total = monthly_data.reduce(function(result, d) {
+            result += parseFloat(d.recyclable_amount || 0);
+            return result;
+          }, 0);
+          graph_data.push({
+            y: k,
+            a: monthly_total
+          }); 
+        }
+      }
+    }
+    // Render Graph if exist
+    if (jQuery('#morris-bar-monthly').length > 0) {
+      Morris.Bar({
+        element: 'morris-bar-monthly',
+        data: graph_data.reverse(),
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Total']
+      });
+    }
+  };
 
   $scope.RenderTransactionBar();
-  $scope.RenderTransactionsByMonthBar();
-
-  // Morris.Bar({
-  //   element: 'bar-example',
-  //   data: [
-  //     {y: 'April', a: 5, b: 40},
-  //     {y: 'May', a: 4, b: 65},
-  //     {y: 'Jun', a: 6, b: 40},
-  //     {y: 'July', a: 7, b: 65},
-  //     {y: 'Aug', a: 9, b: 90},
-  //     {y: 'Sept', a: 11, b: 90},
-  //     {y: 'Oct', a: 9, b: 90}
-  //   ],
-  //   xkey: 'y',
-  //   ykeys: ['a'],
-  //   labels: ['Total']
-  // });
-  // }
 
 })
 .controller('UserSettingsCtrl', function($http, $scope, $rootScope) {
@@ -253,6 +222,9 @@ angular.module('recyclefunWebApp')
       alert('Settings saved.');
     }).error(function(data) {
       console.warn(data);
+      if (data.error) {
+        alert(data.error);
+      }
     });
   };
 
